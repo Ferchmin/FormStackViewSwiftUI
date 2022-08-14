@@ -8,38 +8,9 @@
 import Foundation
 import SwiftUI
 
-// TODO: Make key any enum eg. protocol FormKey?
-enum FormViewKey: String, FormKeys {
-    case firstName
-    case lastName
-    case number
-    case country
-    case username
-    case email
-    case passowrd
-    case terms
-    case marketing
-
-    var validationType: ValidationType {
-        switch self {
-        case .username: return .username
-        case .passowrd: return .password
-        case .terms: return .terms
-        case .email: return .email
-        default: return .none
-        }
-    }
-
-    var keyboardType: UIKeyboardType {
-        switch self {
-        case .number: return .phonePad
-        case .email: return .emailAddress
-        default: return .default
-        }
-    }
-}
 
 // TODO: Is this protocol needed?
+// TODO: Make key any enum eg. protocol FormKey?
 protocol InputView: View {
     var key: FormViewKey { get }
     var validationError: ValidationError? { get nonmutating set }
@@ -64,6 +35,7 @@ struct InputViewReader<Content: View>: InputView {
     @EnvironmentObject var formValues: FormValues
     @State var validationError: ValidationError?
     @FocusState var isFocused: Bool
+
     @State private var shouldValidate: Bool = false
 
     var key: FormViewKey

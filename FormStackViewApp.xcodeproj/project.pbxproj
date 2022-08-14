@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E501B46B28A6B97A00A947EF /* PickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E501B46A28A6B97A00A947EF /* PickerInputView.swift */; };
+		E501B46D28A91E8F00A947EF /* FormViewKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E501B46C28A91E8F00A947EF /* FormViewKey.swift */; };
 		E506E925288EF65F006309B1 /* FormValue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E506E924288EF65F006309B1 /* FormValue+Extensions.swift */; };
 		E506E928288EF738006309B1 /* CaseIterable+Advanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = E506E927288EF738006309B1 /* CaseIterable+Advanced.swift */; };
 		E506E933288F05D3006309B1 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E506E932288F05D3006309B1 /* InputView.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		E501B46A28A6B97A00A947EF /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
+		E501B46C28A91E8F00A947EF /* FormViewKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewKey.swift; sourceTree = "<group>"; };
 		E506E924288EF65F006309B1 /* FormValue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormValue+Extensions.swift"; sourceTree = "<group>"; };
 		E506E927288EF738006309B1 /* CaseIterable+Advanced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaseIterable+Advanced.swift"; sourceTree = "<group>"; };
 		E506E932288F05D3006309B1 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				E53FCAF62885A36E00A537D8 /* FormStackView.swift */,
 				E506E932288F05D3006309B1 /* InputView.swift */,
+				E501B46C28A91E8F00A947EF /* FormViewKey.swift */,
 				E51B6EB6288E942D0026FF75 /* InputViews */,
 			);
 			path = FormStackView;
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E501B46D28A91E8F00A947EF /* FormViewKey.swift in Sources */,
 				E506E933288F05D3006309B1 /* InputView.swift in Sources */,
 				E51B6EB9288E946E0026FF75 /* InputViewCheckbox.swift in Sources */,
 				E51B6EBD288E95100026FF75 /* FormValues.swift in Sources */,

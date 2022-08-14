@@ -20,23 +20,30 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 FormStackView(spacing: 15, arrows: true, values: formValues) {
+                    TextInputView(key: .username)
+                    TextInputView(key: .email)
+                    SecureTextInputView(key: .passowrd)
                     TextInputView(key: .firstName)
                     TextInputView(key: .lastName)
                     TextInputView(key: .number)
                     PickerInputView(key: .country, values: ["Poland", "United Kingdom", "Germany"])
-                    TextInputView(key: .username)
-                    TextInputView(key: .email)
-                    SecureTextInputView(key: .passowrd)
                     ToggleInputView(key: .terms)
                     ToggleInputView(key: .marketing)
                     VStack(spacing: 5) {
                         Divider().padding()
-                        ForEach(formValues.values) { Text("\($0.key): \($0.text ?? $0.isOn?.description ?? "")") }
+                        ForEach(formValues.values) { value in
+                            HStack {
+                                Text("\(value.key):")
+                                Spacer()
+                                Text("\(value.text ?? value.isOn?.description ?? "")")
+                            }
+                        }
                         Button("Validate", action: formValues.validateSubject.send)
                     }
                 }
                 .padding()
-            }.navigationTitle("Example form")
+            }
+            .navigationTitle("Example form")
         }
     }
 }

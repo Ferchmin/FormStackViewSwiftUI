@@ -19,9 +19,7 @@ struct PickerInputView: View {
                     Text(key.rawValue + ":")
                     Spacer()
                     Picker(selection: proxy.text, label: Text("Test")) {
-                        ForEach(values, id: \.self) {
-                            Text($0)
-                        }
+                        ForEach(values, id: \.self) { Text($0) }
                     }
                 }
                 .frame(maxWidth: .infinity)

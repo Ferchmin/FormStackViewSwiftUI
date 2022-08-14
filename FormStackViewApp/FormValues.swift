@@ -12,7 +12,10 @@ import SwiftUI
 
 class FormValues: ObservableObject {
     @Published var values: [FormValue]
+    // TODO: Move this from FormValues to FormStackView
     @Published var focused: FormViewKey?
+    // TODO: Add isValid to form
+    // @Published var isValid: Bool?
 
     let validateSubject = PassthroughSubject<Void, Never>()
 

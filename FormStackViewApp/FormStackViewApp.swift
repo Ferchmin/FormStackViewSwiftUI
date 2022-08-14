@@ -9,8 +9,6 @@ import SwiftUI
 
 @main
 struct FormStackViewApp: App {
-    @State var formValues: FormValues = .init()
-
     var body: some Scene {
         WindowGroup {
             ContentView()
