@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct PickerInputView: View {
-    var key: FormViewKey
+struct PickerInputView<Key: FormKey>: View {
+    var key: Key
     var values: [String]
 
     var body: some View {
@@ -36,7 +36,8 @@ struct PickerInputView: View {
 
 struct PickerInputView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerInputView(key: .username, values: ["Poland", "UK", "Germany"])
-            .environmentObject(FormValues())
+        PickerInputView(key: FormViewKey.username,
+                        values: ["Poland", "UK", "Germany"])
+            .environmentObject(FormValues<FormViewKey>())
     }
 }

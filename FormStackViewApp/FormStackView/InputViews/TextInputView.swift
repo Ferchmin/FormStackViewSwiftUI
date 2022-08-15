@@ -9,8 +9,8 @@ import SwiftUI
 import Common
 import Combine
 
-struct TextInputView: View {
-    var key: FormViewKey
+struct TextInputView<Key: FormKey>: View {
+    var key: Key
 
     var body: some View {
         InputViewReader(key: key) { proxy in
@@ -34,7 +34,7 @@ struct TextInputView: View {
 
 struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
-        TextInputView(key: .username)
-            .environmentObject(FormValues())
+        TextInputView(key: FormViewKey.username)
+            .environmentObject(FormValues<FormViewKey>())
     }
 }

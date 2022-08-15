@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum FormViewKey: String, FormKeys {
+enum FormViewKey: String, FormKey {
     case username
     case email
     case passowrd

@@ -10,9 +10,9 @@ import SwiftUI
 
 
 // TODO: Is this protocol needed?
-// TODO: Make key any enum eg. protocol FormKey?
 protocol InputView: View {
-    var key: FormViewKey { get }
+    associatedtype Key: FormKey
+    var key: Key { get }
     var validationError: ValidationError? { get nonmutating set }
 }
 
@@ -31,18 +31,23 @@ extension InputView {
     }
 }
 
-struct InputViewReader<Content: View>: InputView {
-    @EnvironmentObject var formValues: FormValues
+struct InputViewReader<Content: View, Key: FormKey>: InputView {
+    internal init(key: Key, content: @escaping (InputViewProxy) -> Content) {
+        self.key = key
+        self.content = content
+    }
+
+    @EnvironmentObject var formValues: FormValues<Key>
     @State var validationError: ValidationError?
     @FocusState var isFocused: Bool
 
     @State private var shouldValidate: Bool = false
 
-    var key: FormViewKey
+    var key: Key
     var content: (InputViewProxy) -> Content
 
-    private var text: Binding<String> { $formValues.text(for: key) }
-    private var isOn: Binding<Bool> { $formValues.isOn(for: key) }
+    private var text: Binding<String> { text(for: key) }
+    private var isOn: Binding<Bool> { isOn(for: key) }
 
     private var proxy: InputViewProxy {
         InputViewProxy(text: text,
@@ -62,6 +67,22 @@ struct InputViewReader<Content: View>: InputView {
             .onChange(of: isOn.wrappedValue) { validate($0) }
             .onReceive(formValues.validateSubject) { validate(isOn.wrappedValue) }
             .keyboardType(key.keyboardType)
+    }
+
+    private func text(for key: Key) -> Binding<String> {
+        $formValues.values
+            .map(get: { $0.first(where: { $0.key == key.rawValue }) ?? .text(text: "", key: key.rawValue) },
+                 set: { formValues.values.replaced(value: $0) })
+            .map(get: { $0.text ?? "" },
+                 set: { .text(text: $0, key: key.rawValue) })
+    }
+
+    private func isOn(for key: Key) -> Binding<Bool> {
+        $formValues.values
+            .map(get: { $0.first(where: { $0.key == key.rawValue }) ?? .checkbox(value: false, key: key.rawValue) },
+                 set: { formValues.values.replaced(value: $0) })
+            .map(get: { $0.isOn ?? false },
+                 set: { .checkbox(value: $0, key: key.rawValue) })
     }
 }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SecureTextInputView: View {
+struct SecureTextInputView<Key: FormKey>: View {
     private enum FocusedState: Hashable {
         case secure
         case regular
@@ -16,7 +16,7 @@ struct SecureTextInputView: View {
     @State var isSecure: Bool = true
     @FocusState private var focusedState: FocusedState?
 
-    var key: FormViewKey
+    var key: Key
 
     var body: some View {
         InputViewReader(key: key) { proxy in
@@ -52,7 +52,7 @@ struct SecureTextInputView: View {
 
 struct SecureTextInputView_Previews: PreviewProvider {
     static var previews: some View {
-        SecureTextInputView(key: .passowrd)
-            .environmentObject(FormValues())
+        SecureTextInputView(key: FormViewKey.passowrd)
+            .environmentObject(FormValues<FormViewKey>())
     }
 }

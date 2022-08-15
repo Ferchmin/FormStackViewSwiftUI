@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ToggleInputView: View {
-    var key: FormViewKey
+struct ToggleInputView<Key: FormKey>: View {
+    var key: Key
 
     var body: some View {
         InputViewReader(key: key) { proxy in
@@ -28,7 +28,7 @@ struct ToggleInputView: View {
 
 struct InputViewCheckbox_Previews: PreviewProvider {
     static var previews: some View {
-        ToggleInputView(key: .terms)
-            .environmentObject(FormValues())
+        ToggleInputView(key: FormViewKey.terms)
+            .environmentObject(FormValues<FormViewKey>())
     }
 }

@@ -8,9 +8,9 @@
 import SwiftUI
 import Common
 
-// TODO: Custom keyboard toolbar?
-struct FormStackView<Content: View>: View {
-    @ObservedObject private var formValues: FormValues
+// TODO: Add custom keyboard toolbar?
+struct FormStackView<Content: View, Key: FormKey>: View {
+    @ObservedObject private var formValues: FormValues<Key>
 
     private let alignment: HorizontalAlignment
     private let spacing: CGFloat?
@@ -21,14 +21,14 @@ struct FormStackView<Content: View>: View {
         VStack(alignment: alignment, spacing: spacing) {
             content()
         }
-        .toolbar { ToolbarItemGroup(placement: .keyboard) { if arrows { FormStackViewKeyboardToolabar() } } }
+        .toolbar { ToolbarItemGroup(placement: .keyboard) { if arrows { FormStackViewKeyboardToolabar<Key>() } } }
         .environmentObject(formValues)
     }
 
     init(alignment: HorizontalAlignment = .center,
          spacing: CGFloat? = nil,
          arrows: Bool = true,
-         values: FormValues = .init(),
+         values: FormValues<Key> = .init(),
          @ViewBuilder content: @escaping () -> Content) {
         self.alignment = alignment
         self.spacing = spacing
@@ -39,8 +39,8 @@ struct FormStackView<Content: View>: View {
 }
 
 // TODO: Custom inputs order switching, skipping non-keyboard inputs?
-private struct FormStackViewKeyboardToolabar: View {
-    @EnvironmentObject var formValues: FormValues
+private struct FormStackViewKeyboardToolabar<Key: FormKey>: View {
+    @EnvironmentObject var formValues: FormValues<Key>
 
     var body: some View {
         HStack {
@@ -59,10 +59,12 @@ private struct FormStackViewKeyboardToolabar: View {
 }
 
 struct FormStackView_Previews: PreviewProvider {
+    static let values = FormValues<FormViewKey>()
+
     static var previews: some View {
-        FormStackView {
-            TextInputView(key: .email)
-            ToggleInputView(key: .marketing)
-        }.environmentObject(FormValues())
+        FormStackView(values: values) {
+            TextInputView(key: FormViewKey.email)
+            ToggleInputView(key: FormViewKey.marketing)
+        }
     }
 }

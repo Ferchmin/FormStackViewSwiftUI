@@ -14,21 +14,21 @@ private let values: [FormValue] = [.text(text: "Pawel", key: FormViewKey.usernam
                                    .checkbox(value: true, key: FormViewKey.terms.rawValue)]
 
 struct ContentView: View {
-    @ObservedObject private var formValues: FormValues = .init() // .init(values: values)
+    @ObservedObject private var formValues: FormValues<FormViewKey> = .init() // .init(values: values)
 
     var body: some View {
         NavigationView {
             ScrollView {
                 FormStackView(spacing: 15, arrows: true, values: formValues) {
-                    TextInputView(key: .username)
-                    TextInputView(key: .email)
-                    SecureTextInputView(key: .passowrd)
-                    TextInputView(key: .firstName)
-                    TextInputView(key: .lastName)
-                    TextInputView(key: .number)
-                    PickerInputView(key: .country, values: ["Poland", "United Kingdom", "Germany"])
-                    ToggleInputView(key: .terms)
-                    ToggleInputView(key: .marketing)
+                    TextInputView(key: FormViewKey.username)
+                    TextInputView(key: FormViewKey.email)
+                    SecureTextInputView(key: FormViewKey.passowrd)
+                    TextInputView(key: FormViewKey.firstName)
+                    TextInputView(key: FormViewKey.lastName)
+                    TextInputView(key: FormViewKey.number)
+                    PickerInputView(key: FormViewKey.country, values: ["Poland", "United Kingdom", "Germany"])
+                    ToggleInputView(key: FormViewKey.terms)
+                    ToggleInputView(key: FormViewKey.marketing)
                     VStack(spacing: 5) {
                         Divider().padding()
                         ForEach(formValues.values) { value in
