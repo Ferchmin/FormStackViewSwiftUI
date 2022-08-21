@@ -9,12 +9,24 @@ import Foundation
 import SwiftUI
 import Common
 
+struct NamespaceEnvironmentKey: EnvironmentKey {
+    static var defaultValue: Namespace.ID = Namespace().wrappedValue
+}
+
+extension EnvironmentValues {
+    var namespace: Namespace.ID {
+        get { self[NamespaceEnvironmentKey.self] }
+        set { self[NamespaceEnvironmentKey.self] = newValue }
+    }
+}
+
 private let values: [FormValue] = [.text(text: "Pawel", key: FormViewKey.username.rawValue),
                                    .text(text: "Qwe123!", key: FormViewKey.passowrd.rawValue),
                                    .checkbox(value: true, key: FormViewKey.terms.rawValue)]
 
 struct ContentView: View {
     @ObservedObject private var formValues: FormValues<FormViewKey> = .init() // .init(values: values)
+    @Namespace private var namespace
 
     var body: some View {
         NavigationView {
@@ -45,6 +57,17 @@ struct ContentView: View {
             }
             .navigationTitle("Example form")
         }
+        .overlay {
+            if let focused = formValues.focused {
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(.blue, lineWidth: 1)
+                    .matchedGeometryEffect(id: focused,
+                                           in: namespace,
+                                           properties: .frame,
+                                           isSource: false)
+            }
+        }
+        .environment(\.namespace, namespace)
     }
 }
 

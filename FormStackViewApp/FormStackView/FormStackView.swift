@@ -44,10 +44,14 @@ private struct FormStackViewKeyboardToolabar<Key: FormKey>: View {
 
     var body: some View {
         HStack {
-            Button { formValues.focused = formValues.focused?.advanced(by: -1) } label: {
+            Button {
+                withAnimation(.easeOut(duration: 0.2)) { formValues.focused = formValues.focused?.advanced(by: -1) }
+            } label: {
                 Image(systemName: "arrowtriangle.up.fill")
             }
-            Button { formValues.focused = formValues.focused?.advanced(by: 1) } label: {
+            Button {
+                withAnimation(.easeOut(duration: 0.2)) { formValues.focused = formValues.focused?.advanced(by: 1) }
+            } label: {
                 Image(systemName: "arrowtriangle.down.fill")
             }
             Spacer()

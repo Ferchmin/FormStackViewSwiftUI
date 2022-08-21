@@ -32,11 +32,6 @@ extension InputView {
 }
 
 struct InputViewReader<Content: View, Key: FormKey>: InputView {
-    internal init(key: Key, content: @escaping (InputViewProxy) -> Content) {
-        self.key = key
-        self.content = content
-    }
-
     @EnvironmentObject var formValues: FormValues<Key>
     @State var validationError: ValidationError?
     @FocusState var isFocused: Bool

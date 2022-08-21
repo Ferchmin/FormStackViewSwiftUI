@@ -10,6 +10,8 @@ import Common
 import Combine
 
 struct TextInputView<Key: FormKey>: View {
+    @Environment(\.namespace) private var namespace
+
     var key: Key
 
     var body: some View {
@@ -17,7 +19,13 @@ struct TextInputView<Key: FormKey>: View {
             VStack(alignment: .leading) {
                 TextField(key.rawValue, text: proxy.text)
                     .padding()
-                    .overlay { RoundedRectangle(cornerRadius: 16).stroke(borderColor(for: proxy), lineWidth: 1) }
+                    .matchedGeometryEffect(id: key,
+                                           in: namespace,
+                                           properties: .frame)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(borderColor(for: proxy), lineWidth: 1)
+                    }
                 if let validationError = proxy.validationError {
                     Text(validationError)
                         .font(.system(size: 14))
@@ -28,7 +36,7 @@ struct TextInputView<Key: FormKey>: View {
     }
 
     private func borderColor(for proxy: InputViewProxy) -> Color {
-        proxy.isFocused ? .blue : proxy.validationError == nil ? .gray : .red
+        proxy.validationError == nil ? .gray : .red
     }
 }
 

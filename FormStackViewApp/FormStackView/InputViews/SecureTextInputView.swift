@@ -15,6 +15,7 @@ struct SecureTextInputView<Key: FormKey>: View {
 
     @State var isSecure: Bool = true
     @FocusState private var focusedState: FocusedState?
+    @Environment(\.namespace) private var namespace
 
     var key: Key
 
@@ -35,7 +36,9 @@ struct SecureTextInputView<Key: FormKey>: View {
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(borderColor(for: proxy), lineWidth: 1))
                 .onChange(of: proxy.isFocused) { focusedState = $0 ? isSecure ? .secure : .regular : nil }
                 .onChange(of: isSecure) { if proxy.isFocused { focusedState = $0 ? .secure : .regular } }
-
+                .matchedGeometryEffect(id: key,
+                                       in: namespace,
+                                       properties: .frame)
                 if let validationError = proxy.validationError {
                     Text(validationError)
                         .font(.system(size: 14))
@@ -46,7 +49,7 @@ struct SecureTextInputView<Key: FormKey>: View {
     }
 
     private func borderColor(for proxy: InputViewProxy) -> Color {
-        proxy.isFocused ? .blue : proxy.validationError == nil ? .gray : .red
+        proxy.validationError == nil ? .gray : .red
     }
 }
 

@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct PickerInputView<Key: FormKey>: View {
+    @Environment(\.namespace) private var namespace
+
     var key: Key
     var values: [String]
 
@@ -25,6 +27,9 @@ struct PickerInputView<Key: FormKey>: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(borderColor(for: proxy), lineWidth: 1))
+                .matchedGeometryEffect(id: key,
+                                       in: namespace,
+                                       properties: .frame)
             }
         }
     }
