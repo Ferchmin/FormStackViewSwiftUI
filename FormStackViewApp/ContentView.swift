@@ -38,7 +38,8 @@ struct ContentView: View {
                     TextInputView(key: FormViewKey.firstName)
                     TextInputView(key: FormViewKey.lastName)
                     TextInputView(key: FormViewKey.number)
-                    PickerInputView(key: FormViewKey.country, values: ["Poland", "United Kingdom", "Germany"])
+                    PickerInputView(key: FormViewKey.country,
+                                    values: ["Poland", "United Kingdom", "Germany"])
                     ToggleInputView(key: FormViewKey.terms)
                     ToggleInputView(key: FormViewKey.marketing)
                     VStack(spacing: 5) {
