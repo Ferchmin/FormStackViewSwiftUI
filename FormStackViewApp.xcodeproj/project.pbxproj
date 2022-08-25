@@ -7,43 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E501B46B28A6B97A00A947EF /* PickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E501B46A28A6B97A00A947EF /* PickerInputView.swift */; };
-		E501B46D28A91E8F00A947EF /* FormViewKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E501B46C28A91E8F00A947EF /* FormViewKey.swift */; };
-		E506E925288EF65F006309B1 /* FormValue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E506E924288EF65F006309B1 /* FormValue+Extensions.swift */; };
-		E506E928288EF738006309B1 /* CaseIterable+Advanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = E506E927288EF738006309B1 /* CaseIterable+Advanced.swift */; };
-		E506E933288F05D3006309B1 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E506E932288F05D3006309B1 /* InputView.swift */; };
-		E506E93C288F0B70006309B1 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = E506E93B288F0B70006309B1 /* Common */; };
-		E51B6EB2288E93C30026FF75 /* Binding+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6EB1288E93C30026FF75 /* Binding+Map.swift */; };
+		8CB9DD5A28B79BA9009AD3C3 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5128B79BA9009AD3C3 /* InputView.swift */; };
+		8CB9DD5B28B79BA9009AD3C3 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5328B79BA9009AD3C3 /* TextInputView.swift */; };
+		8CB9DD5C28B79BA9009AD3C3 /* SecureTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5428B79BA9009AD3C3 /* SecureTextInputView.swift */; };
+		8CB9DD5D28B79BA9009AD3C3 /* PickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5528B79BA9009AD3C3 /* PickerInputView.swift */; };
+		8CB9DD5E28B79BA9009AD3C3 /* InputViewCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5628B79BA9009AD3C3 /* InputViewCheckbox.swift */; };
+		8CB9DD5F28B79BA9009AD3C3 /* FormValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5728B79BA9009AD3C3 /* FormValues.swift */; };
+		8CB9DD6028B79BA9009AD3C3 /* FormStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5828B79BA9009AD3C3 /* FormStackView.swift */; };
+		8CB9DD6128B79BA9009AD3C3 /* FormViewKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5928B79BA9009AD3C3 /* FormViewKey.swift */; };
+		8CB9DD6928B79F31009AD3C3 /* FormValue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6328B79F31009AD3C3 /* FormValue+Extensions.swift */; };
+		8CB9DD6A28B79F31009AD3C3 /* FormValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6428B79F31009AD3C3 /* FormValue.swift */; };
+		8CB9DD6B28B79F31009AD3C3 /* Binding+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6528B79F31009AD3C3 /* Binding+Map.swift */; };
+		8CB9DD6C28B79F31009AD3C3 /* CaseIterable+Advanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6628B79F31009AD3C3 /* CaseIterable+Advanced.swift */; };
+		8CB9DD6D28B79F31009AD3C3 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6828B79F31009AD3C3 /* Validator.swift */; };
 		E51B6EB4288E93F20026FF75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6EB3288E93F20026FF75 /* ContentView.swift */; };
-		E51B6EB9288E946E0026FF75 /* InputViewCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6EB8288E946E0026FF75 /* InputViewCheckbox.swift */; };
-		E51B6EBB288E94C30026FF75 /* SecureTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6EBA288E94C30026FF75 /* SecureTextInputView.swift */; };
-		E51B6EBD288E95100026FF75 /* FormValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6EBC288E95100026FF75 /* FormValues.swift */; };
 		E53FCAE72885A29D00A537D8 /* FormStackViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FCAE62885A29D00A537D8 /* FormStackViewApp.swift */; };
 		E53FCAEB2885A29D00A537D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E53FCAEA2885A29D00A537D8 /* Assets.xcassets */; };
 		E53FCAEE2885A29D00A537D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E53FCAED2885A29D00A537D8 /* Preview Assets.xcassets */; };
-		E53FCAF52885A2BD00A537D8 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FCAF42885A2BD00A537D8 /* TextInputView.swift */; };
-		E53FCAF72885A36E00A537D8 /* FormStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FCAF62885A36E00A537D8 /* FormStackView.swift */; };
-		E54418D42887248C000D48AE /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54418D32887248C000D48AE /* Validator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E501B46A28A6B97A00A947EF /* PickerInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
-		E501B46C28A91E8F00A947EF /* FormViewKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewKey.swift; sourceTree = "<group>"; };
-		E506E924288EF65F006309B1 /* FormValue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormValue+Extensions.swift"; sourceTree = "<group>"; };
-		E506E927288EF738006309B1 /* CaseIterable+Advanced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaseIterable+Advanced.swift"; sourceTree = "<group>"; };
-		E506E932288F05D3006309B1 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
-		E51B6EB1288E93C30026FF75 /* Binding+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Map.swift"; sourceTree = "<group>"; };
+		8CB9DD5128B79BA9009AD3C3 /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputView.swift; path = FormStackView/Sources/InputView.swift; sourceTree = SOURCE_ROOT; };
+		8CB9DD5328B79BA9009AD3C3 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
+		8CB9DD5428B79BA9009AD3C3 /* SecureTextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureTextInputView.swift; sourceTree = "<group>"; };
+		8CB9DD5528B79BA9009AD3C3 /* PickerInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
+		8CB9DD5628B79BA9009AD3C3 /* InputViewCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCheckbox.swift; sourceTree = "<group>"; };
+		8CB9DD5728B79BA9009AD3C3 /* FormValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormValues.swift; path = FormStackView/Sources/FormValues.swift; sourceTree = SOURCE_ROOT; };
+		8CB9DD5828B79BA9009AD3C3 /* FormStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormStackView.swift; path = FormStackView/Sources/FormStackView.swift; sourceTree = SOURCE_ROOT; };
+		8CB9DD5928B79BA9009AD3C3 /* FormViewKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormViewKey.swift; path = FormStackView/Sources/FormViewKey.swift; sourceTree = SOURCE_ROOT; };
+		8CB9DD6328B79F31009AD3C3 /* FormValue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FormValue+Extensions.swift"; sourceTree = "<group>"; };
+		8CB9DD6428B79F31009AD3C3 /* FormValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormValue.swift; sourceTree = "<group>"; };
+		8CB9DD6528B79F31009AD3C3 /* Binding+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Map.swift"; sourceTree = "<group>"; };
+		8CB9DD6628B79F31009AD3C3 /* CaseIterable+Advanced.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CaseIterable+Advanced.swift"; sourceTree = "<group>"; };
+		8CB9DD6828B79F31009AD3C3 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E51B6EB3288E93F20026FF75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E51B6EB8288E946E0026FF75 /* InputViewCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewCheckbox.swift; sourceTree = "<group>"; };
-		E51B6EBA288E94C30026FF75 /* SecureTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextInputView.swift; sourceTree = "<group>"; };
-		E51B6EBC288E95100026FF75 /* FormValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormValues.swift; sourceTree = "<group>"; };
 		E53FCAE32885A29D00A537D8 /* FormStackViewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormStackViewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53FCAE62885A29D00A537D8 /* FormStackViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStackViewApp.swift; sourceTree = "<group>"; };
 		E53FCAEA2885A29D00A537D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E53FCAED2885A29D00A537D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E53FCAF42885A2BD00A537D8 /* TextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
-		E53FCAF62885A36E00A537D8 /* FormStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStackView.swift; sourceTree = "<group>"; };
-		E54418D32887248C000D48AE /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,44 +52,58 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E506E93C288F0B70006309B1 /* Common in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E506E926288EF69A006309B1 /* Utils */ = {
+		8CB9DD4828B79B87009AD3C3 /* FormStackView */ = {
 			isa = PBXGroup;
 			children = (
-				E51B6EB1288E93C30026FF75 /* Binding+Map.swift */,
-				E506E924288EF65F006309B1 /* FormValue+Extensions.swift */,
-				E506E927288EF738006309B1 /* CaseIterable+Advanced.swift */,
+				8CB9DD6228B79F31009AD3C3 /* Utils */,
+				8CB9DD6728B79F31009AD3C3 /* Validation */,
+				8CB9DD5828B79BA9009AD3C3 /* FormStackView.swift */,
+				8CB9DD5728B79BA9009AD3C3 /* FormValues.swift */,
+				8CB9DD5928B79BA9009AD3C3 /* FormViewKey.swift */,
+				8CB9DD5128B79BA9009AD3C3 /* InputView.swift */,
+				8CB9DD5228B79BA9009AD3C3 /* InputViews */,
 			);
-			path = Utils;
+			name = FormStackView;
 			sourceTree = "<group>";
 		};
-		E51B6EB5288E941E0026FF75 /* FormStackView */ = {
+		8CB9DD5228B79BA9009AD3C3 /* InputViews */ = {
 			isa = PBXGroup;
 			children = (
-				E53FCAF62885A36E00A537D8 /* FormStackView.swift */,
-				E506E932288F05D3006309B1 /* InputView.swift */,
-				E501B46C28A91E8F00A947EF /* FormViewKey.swift */,
-				E51B6EB6288E942D0026FF75 /* InputViews */,
+				8CB9DD5328B79BA9009AD3C3 /* TextInputView.swift */,
+				8CB9DD5428B79BA9009AD3C3 /* SecureTextInputView.swift */,
+				8CB9DD5528B79BA9009AD3C3 /* PickerInputView.swift */,
+				8CB9DD5628B79BA9009AD3C3 /* InputViewCheckbox.swift */,
 			);
-			path = FormStackView;
-			sourceTree = "<group>";
+			name = InputViews;
+			path = FormStackView/Sources/InputViews;
+			sourceTree = SOURCE_ROOT;
 		};
-		E51B6EB6288E942D0026FF75 /* InputViews */ = {
+		8CB9DD6228B79F31009AD3C3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E53FCAF42885A2BD00A537D8 /* TextInputView.swift */,
-				E51B6EBA288E94C30026FF75 /* SecureTextInputView.swift */,
-				E501B46A28A6B97A00A947EF /* PickerInputView.swift */,
-				E51B6EB8288E946E0026FF75 /* InputViewCheckbox.swift */,
+				8CB9DD6328B79F31009AD3C3 /* FormValue+Extensions.swift */,
+				8CB9DD6428B79F31009AD3C3 /* FormValue.swift */,
+				8CB9DD6528B79F31009AD3C3 /* Binding+Map.swift */,
+				8CB9DD6628B79F31009AD3C3 /* CaseIterable+Advanced.swift */,
 			);
-			path = InputViews;
-			sourceTree = "<group>";
+			name = Utils;
+			path = FormStackView/Sources/Utils;
+			sourceTree = SOURCE_ROOT;
+		};
+		8CB9DD6728B79F31009AD3C3 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				8CB9DD6828B79F31009AD3C3 /* Validator.swift */,
+			);
+			name = Validation;
+			path = FormStackView/Sources/Validation;
+			sourceTree = SOURCE_ROOT;
 		};
 		E53FCADA2885A29D00A537D8 = {
 			isa = PBXGroup;
@@ -110,12 +125,9 @@
 		E53FCAE52885A29D00A537D8 /* FormStackViewApp */ = {
 			isa = PBXGroup;
 			children = (
+				8CB9DD4828B79B87009AD3C3 /* FormStackView */,
 				E53FCAE62885A29D00A537D8 /* FormStackViewApp.swift */,
 				E51B6EB3288E93F20026FF75 /* ContentView.swift */,
-				E51B6EBC288E95100026FF75 /* FormValues.swift */,
-				E51B6EB5288E941E0026FF75 /* FormStackView */,
-				E506E926288EF69A006309B1 /* Utils */,
-				E54418D22887247F000D48AE /* Validation */,
 				E53FCAEA2885A29D00A537D8 /* Assets.xcassets */,
 				E53FCAEC2885A29D00A537D8 /* Preview Content */,
 			);
@@ -137,14 +149,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E54418D22887247F000D48AE /* Validation */ = {
-			isa = PBXGroup;
-			children = (
-				E54418D32887248C000D48AE /* Validator.swift */,
-			);
-			path = Validation;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,7 +166,6 @@
 			);
 			name = FormStackViewApp;
 			packageProductDependencies = (
-				E506E93B288F0B70006309B1 /* Common */,
 			);
 			productName = FormStackViewApp;
 			productReference = E53FCAE32885A29D00A537D8 /* FormStackViewApp.app */;
@@ -193,7 +196,6 @@
 			);
 			mainGroup = E53FCADA2885A29D00A537D8;
 			packageReferences = (
-				E506E93A288F0B70006309B1 /* XCRemoteSwiftPackageReference "sbiosshared" */,
 			);
 			productRefGroup = E53FCAE42885A29D00A537D8 /* Products */;
 			projectDirPath = "";
@@ -221,20 +223,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E501B46D28A91E8F00A947EF /* FormViewKey.swift in Sources */,
-				E506E933288F05D3006309B1 /* InputView.swift in Sources */,
-				E51B6EB9288E946E0026FF75 /* InputViewCheckbox.swift in Sources */,
-				E51B6EBD288E95100026FF75 /* FormValues.swift in Sources */,
-				E501B46B28A6B97A00A947EF /* PickerInputView.swift in Sources */,
-				E506E928288EF738006309B1 /* CaseIterable+Advanced.swift in Sources */,
-				E51B6EBB288E94C30026FF75 /* SecureTextInputView.swift in Sources */,
-				E506E925288EF65F006309B1 /* FormValue+Extensions.swift in Sources */,
+				8CB9DD5E28B79BA9009AD3C3 /* InputViewCheckbox.swift in Sources */,
 				E51B6EB4288E93F20026FF75 /* ContentView.swift in Sources */,
-				E51B6EB2288E93C30026FF75 /* Binding+Map.swift in Sources */,
-				E53FCAF52885A2BD00A537D8 /* TextInputView.swift in Sources */,
-				E54418D42887248C000D48AE /* Validator.swift in Sources */,
+				8CB9DD5A28B79BA9009AD3C3 /* InputView.swift in Sources */,
+				8CB9DD6A28B79F31009AD3C3 /* FormValue.swift in Sources */,
 				E53FCAE72885A29D00A537D8 /* FormStackViewApp.swift in Sources */,
-				E53FCAF72885A36E00A537D8 /* FormStackView.swift in Sources */,
+				8CB9DD6928B79F31009AD3C3 /* FormValue+Extensions.swift in Sources */,
+				8CB9DD5B28B79BA9009AD3C3 /* TextInputView.swift in Sources */,
+				8CB9DD6D28B79F31009AD3C3 /* Validator.swift in Sources */,
+				8CB9DD5F28B79BA9009AD3C3 /* FormValues.swift in Sources */,
+				8CB9DD5D28B79BA9009AD3C3 /* PickerInputView.swift in Sources */,
+				8CB9DD6C28B79F31009AD3C3 /* CaseIterable+Advanced.swift in Sources */,
+				8CB9DD5C28B79BA9009AD3C3 /* SecureTextInputView.swift in Sources */,
+				8CB9DD6028B79BA9009AD3C3 /* FormStackView.swift in Sources */,
+				8CB9DD6B28B79F31009AD3C3 /* Binding+Map.swift in Sources */,
+				8CB9DD6128B79BA9009AD3C3 /* FormViewKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,25 +440,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E506E93A288F0B70006309B1 /* XCRemoteSwiftPackageReference "sbiosshared" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@bitbucket.org:mobile5/sbiosshared.git";
-			requirement = {
-				branch = feature/combine/form;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E506E93B288F0B70006309B1 /* Common */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E506E93A288F0B70006309B1 /* XCRemoteSwiftPackageReference "sbiosshared" */;
-			productName = Common;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E53FCADB2885A29D00A537D8 /* Project object */;
 }
