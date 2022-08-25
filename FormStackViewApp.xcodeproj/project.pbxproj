@@ -7,19 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8CB9DD5A28B79BA9009AD3C3 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5128B79BA9009AD3C3 /* InputView.swift */; };
-		8CB9DD5B28B79BA9009AD3C3 /* TextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5328B79BA9009AD3C3 /* TextInputView.swift */; };
-		8CB9DD5C28B79BA9009AD3C3 /* SecureTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5428B79BA9009AD3C3 /* SecureTextInputView.swift */; };
-		8CB9DD5D28B79BA9009AD3C3 /* PickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5528B79BA9009AD3C3 /* PickerInputView.swift */; };
-		8CB9DD5E28B79BA9009AD3C3 /* InputViewCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5628B79BA9009AD3C3 /* InputViewCheckbox.swift */; };
-		8CB9DD5F28B79BA9009AD3C3 /* FormValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5728B79BA9009AD3C3 /* FormValues.swift */; };
-		8CB9DD6028B79BA9009AD3C3 /* FormStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5828B79BA9009AD3C3 /* FormStackView.swift */; };
-		8CB9DD6128B79BA9009AD3C3 /* FormViewKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD5928B79BA9009AD3C3 /* FormViewKey.swift */; };
-		8CB9DD6928B79F31009AD3C3 /* FormValue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6328B79F31009AD3C3 /* FormValue+Extensions.swift */; };
-		8CB9DD6A28B79F31009AD3C3 /* FormValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6428B79F31009AD3C3 /* FormValue.swift */; };
-		8CB9DD6B28B79F31009AD3C3 /* Binding+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6528B79F31009AD3C3 /* Binding+Map.swift */; };
-		8CB9DD6C28B79F31009AD3C3 /* CaseIterable+Advanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6628B79F31009AD3C3 /* CaseIterable+Advanced.swift */; };
-		8CB9DD6D28B79F31009AD3C3 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB9DD6828B79F31009AD3C3 /* Validator.swift */; };
+		8CB9DD7028B7A051009AD3C3 /* FormStackView in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB9DD6F28B7A051009AD3C3 /* FormStackView */; };
 		E51B6EB4288E93F20026FF75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6EB3288E93F20026FF75 /* ContentView.swift */; };
 		E53FCAE72885A29D00A537D8 /* FormStackViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FCAE62885A29D00A537D8 /* FormStackViewApp.swift */; };
 		E53FCAEB2885A29D00A537D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E53FCAEA2885A29D00A537D8 /* Assets.xcassets */; };
@@ -27,19 +15,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8CB9DD5128B79BA9009AD3C3 /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputView.swift; path = FormStackView/Sources/InputView.swift; sourceTree = SOURCE_ROOT; };
-		8CB9DD5328B79BA9009AD3C3 /* TextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputView.swift; sourceTree = "<group>"; };
-		8CB9DD5428B79BA9009AD3C3 /* SecureTextInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureTextInputView.swift; sourceTree = "<group>"; };
-		8CB9DD5528B79BA9009AD3C3 /* PickerInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerInputView.swift; sourceTree = "<group>"; };
-		8CB9DD5628B79BA9009AD3C3 /* InputViewCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewCheckbox.swift; sourceTree = "<group>"; };
-		8CB9DD5728B79BA9009AD3C3 /* FormValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormValues.swift; path = FormStackView/Sources/FormValues.swift; sourceTree = SOURCE_ROOT; };
-		8CB9DD5828B79BA9009AD3C3 /* FormStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormStackView.swift; path = FormStackView/Sources/FormStackView.swift; sourceTree = SOURCE_ROOT; };
-		8CB9DD5928B79BA9009AD3C3 /* FormViewKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormViewKey.swift; path = FormStackView/Sources/FormViewKey.swift; sourceTree = SOURCE_ROOT; };
-		8CB9DD6328B79F31009AD3C3 /* FormValue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FormValue+Extensions.swift"; sourceTree = "<group>"; };
-		8CB9DD6428B79F31009AD3C3 /* FormValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormValue.swift; sourceTree = "<group>"; };
-		8CB9DD6528B79F31009AD3C3 /* Binding+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding+Map.swift"; sourceTree = "<group>"; };
-		8CB9DD6628B79F31009AD3C3 /* CaseIterable+Advanced.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CaseIterable+Advanced.swift"; sourceTree = "<group>"; };
-		8CB9DD6828B79F31009AD3C3 /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E51B6EB3288E93F20026FF75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E53FCAE32885A29D00A537D8 /* FormStackViewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormStackViewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53FCAE62885A29D00A537D8 /* FormStackViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormStackViewApp.swift; sourceTree = "<group>"; };
@@ -52,59 +27,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CB9DD7028B7A051009AD3C3 /* FormStackView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8CB9DD4828B79B87009AD3C3 /* FormStackView */ = {
-			isa = PBXGroup;
-			children = (
-				8CB9DD6228B79F31009AD3C3 /* Utils */,
-				8CB9DD6728B79F31009AD3C3 /* Validation */,
-				8CB9DD5828B79BA9009AD3C3 /* FormStackView.swift */,
-				8CB9DD5728B79BA9009AD3C3 /* FormValues.swift */,
-				8CB9DD5928B79BA9009AD3C3 /* FormViewKey.swift */,
-				8CB9DD5128B79BA9009AD3C3 /* InputView.swift */,
-				8CB9DD5228B79BA9009AD3C3 /* InputViews */,
-			);
-			name = FormStackView;
-			sourceTree = "<group>";
-		};
-		8CB9DD5228B79BA9009AD3C3 /* InputViews */ = {
-			isa = PBXGroup;
-			children = (
-				8CB9DD5328B79BA9009AD3C3 /* TextInputView.swift */,
-				8CB9DD5428B79BA9009AD3C3 /* SecureTextInputView.swift */,
-				8CB9DD5528B79BA9009AD3C3 /* PickerInputView.swift */,
-				8CB9DD5628B79BA9009AD3C3 /* InputViewCheckbox.swift */,
-			);
-			name = InputViews;
-			path = FormStackView/Sources/InputViews;
-			sourceTree = SOURCE_ROOT;
-		};
-		8CB9DD6228B79F31009AD3C3 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				8CB9DD6328B79F31009AD3C3 /* FormValue+Extensions.swift */,
-				8CB9DD6428B79F31009AD3C3 /* FormValue.swift */,
-				8CB9DD6528B79F31009AD3C3 /* Binding+Map.swift */,
-				8CB9DD6628B79F31009AD3C3 /* CaseIterable+Advanced.swift */,
-			);
-			name = Utils;
-			path = FormStackView/Sources/Utils;
-			sourceTree = SOURCE_ROOT;
-		};
-		8CB9DD6728B79F31009AD3C3 /* Validation */ = {
-			isa = PBXGroup;
-			children = (
-				8CB9DD6828B79F31009AD3C3 /* Validator.swift */,
-			);
-			name = Validation;
-			path = FormStackView/Sources/Validation;
-			sourceTree = SOURCE_ROOT;
-		};
 		E53FCADA2885A29D00A537D8 = {
 			isa = PBXGroup;
 			children = (
@@ -125,7 +54,6 @@
 		E53FCAE52885A29D00A537D8 /* FormStackViewApp */ = {
 			isa = PBXGroup;
 			children = (
-				8CB9DD4828B79B87009AD3C3 /* FormStackView */,
 				E53FCAE62885A29D00A537D8 /* FormStackViewApp.swift */,
 				E51B6EB3288E93F20026FF75 /* ContentView.swift */,
 				E53FCAEA2885A29D00A537D8 /* Assets.xcassets */,
@@ -166,6 +94,7 @@
 			);
 			name = FormStackViewApp;
 			packageProductDependencies = (
+				8CB9DD6F28B7A051009AD3C3 /* FormStackView */,
 			);
 			productName = FormStackViewApp;
 			productReference = E53FCAE32885A29D00A537D8 /* FormStackViewApp.app */;
@@ -196,6 +125,7 @@
 			);
 			mainGroup = E53FCADA2885A29D00A537D8;
 			packageReferences = (
+				8CB9DD6E28B7A051009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */,
 			);
 			productRefGroup = E53FCAE42885A29D00A537D8 /* Products */;
 			projectDirPath = "";
@@ -223,21 +153,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CB9DD5E28B79BA9009AD3C3 /* InputViewCheckbox.swift in Sources */,
 				E51B6EB4288E93F20026FF75 /* ContentView.swift in Sources */,
-				8CB9DD5A28B79BA9009AD3C3 /* InputView.swift in Sources */,
-				8CB9DD6A28B79F31009AD3C3 /* FormValue.swift in Sources */,
 				E53FCAE72885A29D00A537D8 /* FormStackViewApp.swift in Sources */,
-				8CB9DD6928B79F31009AD3C3 /* FormValue+Extensions.swift in Sources */,
-				8CB9DD5B28B79BA9009AD3C3 /* TextInputView.swift in Sources */,
-				8CB9DD6D28B79F31009AD3C3 /* Validator.swift in Sources */,
-				8CB9DD5F28B79BA9009AD3C3 /* FormValues.swift in Sources */,
-				8CB9DD5D28B79BA9009AD3C3 /* PickerInputView.swift in Sources */,
-				8CB9DD6C28B79F31009AD3C3 /* CaseIterable+Advanced.swift in Sources */,
-				8CB9DD5C28B79BA9009AD3C3 /* SecureTextInputView.swift in Sources */,
-				8CB9DD6028B79BA9009AD3C3 /* FormStackView.swift in Sources */,
-				8CB9DD6B28B79F31009AD3C3 /* Binding+Map.swift in Sources */,
-				8CB9DD6128B79BA9009AD3C3 /* FormViewKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +357,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8CB9DD6E28B7A051009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Ferchmin/FormStackViewSwiftUI.git";
+			requirement = {
+				branch = feature/spm;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8CB9DD6F28B7A051009AD3C3 /* FormStackView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CB9DD6E28B7A051009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */;
+			productName = FormStackView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E53FCADB2885A29D00A537D8 /* Project object */;
 }

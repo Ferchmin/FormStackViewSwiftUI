@@ -9,15 +9,15 @@ import Combine
 import Foundation
 import SwiftUI
 
-class FormValues<Key: FormKey>: ObservableObject {
-    @Published var values: [FormValue]
+public class FormValues<Key: FormKey>: ObservableObject {
+    @Published public var values: [FormValue]
     // TODO: Move focus handling from FormValues to FormStackView
-    @Published var focused: Key?
+    @Published public var focused: Key?
     // @Published var isValid: Bool? // TODO: Add isValid to form
 
-    let validateSubject = PassthroughSubject<Void, Never>()
+    public let validateSubject = PassthroughSubject<Void, Never>()
 
-    init(values: [FormValue] = []) {
+    public init(values: [FormValue] = []) {
         self.values = values
     }
 }
