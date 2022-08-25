@@ -5,7 +5,6 @@
 //  Created by Paweł Zgoda-Ferchmin on 25/07/2022.
 //
 
-import Common
 import Foundation
 
 public extension FormValue {

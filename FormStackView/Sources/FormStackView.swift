@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import Common
 
 // TODO: Add custom keyboard toolbar?
-struct FormStackView<Content: View, Key: FormKey>: View {
+public struct FormStackView<Content: View, Key: FormKey>: View {
     @ObservedObject private var formValues: FormValues<Key>
 
     private let alignment: HorizontalAlignment
@@ -17,7 +16,7 @@ struct FormStackView<Content: View, Key: FormKey>: View {
     private let arrows: Bool
     private let content: () -> Content
 
-    var body: some View {
+    public var body: some View {
         VStack(alignment: alignment, spacing: spacing) {
             content()
         }
@@ -25,7 +24,7 @@ struct FormStackView<Content: View, Key: FormKey>: View {
         .environmentObject(formValues)
     }
 
-    init(alignment: HorizontalAlignment = .center,
+    public init(alignment: HorizontalAlignment = .center,
          spacing: CGFloat? = nil,
          arrows: Bool = true,
          values: FormValues<Key> = .init(),
@@ -58,10 +57,10 @@ private struct FormStackViewKeyboardToolabar<Key: FormKey>: View {
     }
 }
 
-struct FormStackView_Previews: PreviewProvider {
-    static let values = FormValues<FormViewKey>()
+public struct FormStackView_Previews: PreviewProvider {
+    public static let values = FormValues<FormViewKey>()
 
-    static var previews: some View {
+    public static var previews: some View {
         FormStackView(values: values) {
             TextInputView(key: FormViewKey.email)
             ToggleInputView(key: FormViewKey.marketing)

@@ -8,15 +8,14 @@
 import Foundation
 import SwiftUI
 
-
 // TODO: Is this protocol needed?
-protocol InputView: View {
+public protocol InputView: View {
     associatedtype Key: FormKey
     var key: Key { get }
     var validationError: ValidationError? { get nonmutating set }
 }
 
-extension InputView {
+public extension InputView {
     var textValidator: TextValidator.Type? { key.validationType.textValidator }
     var checkboxValidator: CheckBoxValidator.Type? { key.validationType.checkboxValidator }
 

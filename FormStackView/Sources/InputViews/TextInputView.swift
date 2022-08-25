@@ -5,9 +5,8 @@
 //  Created by Paweł Zgoda-Ferchmin on 18/07/2022.
 //
 
-import SwiftUI
-import Common
 import Combine
+import SwiftUI
 
 struct TextInputView<Key: FormKey>: View {
     var key: Key

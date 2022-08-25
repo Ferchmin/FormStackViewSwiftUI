@@ -41,7 +41,7 @@ public enum ValidationError: Error {
     }
 }
 
-extension ValidationError {
+public extension ValidationError {
     var errorDescription: String {
         switch self {
         default: return String(reflecting: self)

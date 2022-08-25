@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum FormViewKey: String, FormKey {
+public enum FormViewKey: String, FormKey {
     case username
     case email
     case passowrd
@@ -19,7 +19,7 @@ enum FormViewKey: String, FormKey {
     case terms
     case marketing
 
-    var validationType: ValidationType {
+    public var validationType: ValidationType {
         switch self {
         case .username: return .username
         case .passowrd: return .password
@@ -29,7 +29,7 @@ enum FormViewKey: String, FormKey {
         }
     }
 
-    var keyboardType: UIKeyboardType {
+    public var keyboardType: UIKeyboardType {
         switch self {
         case .number: return .phonePad
         case .email: return .emailAddress

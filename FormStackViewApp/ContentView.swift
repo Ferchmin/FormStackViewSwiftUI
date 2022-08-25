@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import Common
 
 private let values: [FormValue] = [.text(text: "Pawel", key: FormViewKey.username.rawValue),
                                    .text(text: "Qwe123!", key: FormViewKey.passowrd.rawValue),

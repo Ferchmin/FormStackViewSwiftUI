@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-protocol FormKey: Hashable, CaseIterable {
+public protocol FormKey: Hashable, CaseIterable {
     var validationType: ValidationType { get }
     var keyboardType: UIKeyboardType { get }
     var rawValue: String { get }
 }
 
 // TODO: Next/prev based on order in FormView not of enum
-extension FormKey {
+public extension FormKey {
     func advanced(by n: Int) -> Self {
         let all = Array(Self.allCases)
         let idx = (all.firstIndex(of: self)! + n) % all.count

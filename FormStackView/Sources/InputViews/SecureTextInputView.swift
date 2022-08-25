@@ -5,6 +5,7 @@
 //  Created by Paweł Zgoda-Ferchmin on 25/07/2022.
 //
 
+import Foundation
 import SwiftUI
 
 struct SecureTextInputView<Key: FormKey>: View {
