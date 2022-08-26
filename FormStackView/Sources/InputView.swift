@@ -31,7 +31,7 @@ public extension InputView {
 }
 
 public struct InputViewReader<Content: View, Key: FormKey>: InputView {
-    internal init(key: Key, content: @escaping (InputViewProxy) -> Content) {
+    public init(key: Key, content: @escaping (InputViewProxy) -> Content) {
         self.key = key
         self.content = content
     }
