@@ -5,6 +5,7 @@
 //  Created by Paweł Zgoda-Ferchmin on 25/07/2022.
 //
 
+import FormStackView
 import Foundation
 import SwiftUI
 
@@ -18,7 +19,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                FormStackView(spacing: 15, arrows: true, values: formValues) {
+                FormStackView.FormStackView(spacing: 15, arrows: true, values: formValues) {
                     TextInputView(key: FormViewKey.username)
                     TextInputView(key: FormViewKey.email)
                     SecureTextInputView(key: FormViewKey.passowrd)

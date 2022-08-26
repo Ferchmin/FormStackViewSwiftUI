@@ -30,20 +30,20 @@ public extension InputView {
     }
 }
 
-struct InputViewReader<Content: View, Key: FormKey>: InputView {
+public struct InputViewReader<Content: View, Key: FormKey>: InputView {
     internal init(key: Key, content: @escaping (InputViewProxy) -> Content) {
         self.key = key
         self.content = content
     }
 
-    @EnvironmentObject var formValues: FormValues<Key>
-    @State var validationError: ValidationError?
-    @FocusState var isFocused: Bool
+    @EnvironmentObject public var formValues: FormValues<Key>
+    @State public var validationError: ValidationError?
+    @FocusState public var isFocused: Bool
 
     @State private var shouldValidate: Bool = false
 
-    var key: Key
-    var content: (InputViewProxy) -> Content
+    public var key: Key
+    public var content: (InputViewProxy) -> Content
 
     private var text: Binding<String> { text(for: key) }
     private var isOn: Binding<Bool> { isOn(for: key) }
@@ -55,7 +55,7 @@ struct InputViewReader<Content: View, Key: FormKey>: InputView {
                        isFocused: isFocused)
     }
 
-    var body: some View {
+    public var body: some View {
         content(proxy)
             .focused($isFocused)
             .onChange(of: isFocused) { if !$0 { shouldValidate = true; validate(text.wrappedValue) } }
@@ -85,9 +85,9 @@ struct InputViewReader<Content: View, Key: FormKey>: InputView {
     }
 }
 
-struct InputViewProxy {
-    var text: Binding<String>
-    var isOn: Binding<Bool>
-    var validationError: String?
-    var isFocused: Bool
+public struct InputViewProxy {
+    public var text: Binding<String>
+    public var isOn: Binding<Bool>
+    public var validationError: String?
+    public var isFocused: Bool
 }
