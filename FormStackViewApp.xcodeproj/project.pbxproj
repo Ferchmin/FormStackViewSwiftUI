@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8CB9DD7028B7A051009AD3C3 /* FormStackView in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB9DD6F28B7A051009AD3C3 /* FormStackView */; };
+		8CB9DD7528B7A357009AD3C3 /* FormStackView in Frameworks */ = {isa = PBXBuildFile; productRef = 8CB9DD7428B7A357009AD3C3 /* FormStackView */; };
 		E51B6EB4288E93F20026FF75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B6EB3288E93F20026FF75 /* ContentView.swift */; };
 		E53FCAE72885A29D00A537D8 /* FormStackViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53FCAE62885A29D00A537D8 /* FormStackViewApp.swift */; };
 		E53FCAEB2885A29D00A537D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E53FCAEA2885A29D00A537D8 /* Assets.xcassets */; };
@@ -27,7 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CB9DD7028B7A051009AD3C3 /* FormStackView in Frameworks */,
+				8CB9DD7528B7A357009AD3C3 /* FormStackView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +94,7 @@
 			);
 			name = FormStackViewApp;
 			packageProductDependencies = (
-				8CB9DD6F28B7A051009AD3C3 /* FormStackView */,
+				8CB9DD7428B7A357009AD3C3 /* FormStackView */,
 			);
 			productName = FormStackViewApp;
 			productReference = E53FCAE32885A29D00A537D8 /* FormStackViewApp.app */;
@@ -125,7 +125,7 @@
 			);
 			mainGroup = E53FCADA2885A29D00A537D8;
 			packageReferences = (
-				8CB9DD6E28B7A051009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */,
+				8CB9DD7328B7A357009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */,
 			);
 			productRefGroup = E53FCAE42885A29D00A537D8 /* Products */;
 			projectDirPath = "";
@@ -359,7 +359,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8CB9DD6E28B7A051009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */ = {
+		8CB9DD7328B7A357009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:Ferchmin/FormStackViewSwiftUI.git";
 			requirement = {
@@ -370,9 +370,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8CB9DD6F28B7A051009AD3C3 /* FormStackView */ = {
+		8CB9DD7428B7A357009AD3C3 /* FormStackView */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8CB9DD6E28B7A051009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */;
+			package = 8CB9DD7328B7A357009AD3C3 /* XCRemoteSwiftPackageReference "FormStackViewSwiftUI" */;
 			productName = FormStackView;
 		};
 /* End XCSwiftPackageProductDependency section */
