@@ -5,46 +5,51 @@
 //  Created by Paweł Zgoda-Ferchmin on 25/07/2022.
 //
 
+import Combine
 import FormStackView
 import Foundation
 import SwiftUI
 
-private let values: [FormValue] = [.text(text: "Pawel", key: FormViewKey.username.rawValue),
-                                   .text(text: "Qwe123!", key: FormViewKey.passowrd.rawValue),
-                                   .checkbox(value: true, key: FormViewKey.terms.rawValue)]
+private let inputValues: [FormValue] = [.text(text: "mail@mail.com", key: ExampleFormKey.email),
+                                        .text(text: "Qwe123!", key: ExampleFormKey.password),
+                                        .checkbox(value: true, key: ExampleFormKey.terms)]
 
 struct ContentView: View {
-    @ObservedObject private var formValues: FormValues<FormViewKey> = .init() // .init(values: values)
+    @State private var values: [FormValue] = [] // inputValues
+    @State private var isValid: Bool = true
+
+    private let validateSubject = PassthroughSubject<Void, Never>()
 
     var body: some View {
         NavigationView {
             ScrollView {
-                FormStackView.FormStackView(spacing: 15, arrows: true, values: formValues) {
-                    TextInputView(key: FormViewKey.username)
-                    TextInputView(key: FormViewKey.email)
-                    SecureTextInputView(key: FormViewKey.passowrd)
-                    TextInputView(key: FormViewKey.firstName)
-                    TextInputView(key: FormViewKey.lastName)
-                    TextInputView(key: FormViewKey.number)
-                    PickerInputView(key: FormViewKey.country, values: ["Poland", "United Kingdom", "Germany"])
-                    ToggleInputView(key: FormViewKey.terms)
-                    ToggleInputView(key: FormViewKey.marketing)
+                FormStack(values: $values, validateSubject: validateSubject, isValid: $isValid) {
+                    TextInput(key: ExampleFormKey.email)
+                    SecureTextInput(key: ExampleFormKey.password)
+                    TextInput(key: ExampleFormKey.firstName)
+                    TextInput(key: ExampleFormKey.number)
+                    PickerInput(key: ExampleFormKey.country, values: ["Poland", "United Kingdom", "Germany"])
+                    ToggleInput(key: ExampleFormKey.terms)
+                    ToggleInput(key: ExampleFormKey.marketing)
                     VStack(spacing: 5) {
                         Divider().padding()
-                        ForEach(formValues.values) { value in
+                        ForEach(values) { value in
                             HStack {
-                                Text("\(value.key):")
+                                Text("\(value.key.rawValue):")
                                 Spacer()
                                 Text("\(value.text ?? value.isOn?.description ?? "")")
                             }
                         }
-                        Button("Validate", action: formValues.validateSubject.send)
+                        Button("Validate", action: validateSubject.send)
+                        if !isValid { Text("Form view has errors").foregroundColor(.red) }
                     }
                 }
                 .padding()
             }
             .navigationTitle("Example form")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(.stack)
     }
 }
 

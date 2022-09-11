@@ -2,18 +2,17 @@
 //  FormViewKey.swift
 //  FormStackViewApp
 //
-//  Created by Paweł Zgoda-Ferchmin on 14/08/2022.
+//  Created by Paweł Zgoda-Ferchmin on 06/09/2022.
 //
 
+import FormStackView
 import Foundation
 import SwiftUI
 
-public enum FormViewKey: String, FormKey {
-    case username
+public enum ExampleFormKey: String, CaseIterableFormKey {
     case email
-    case passowrd
+    case password
     case firstName
-    case lastName
     case number
     case country
     case terms
@@ -21,8 +20,7 @@ public enum FormViewKey: String, FormKey {
 
     public var validationType: ValidationType {
         switch self {
-        case .username: return .username
-        case .passowrd: return .password
+        case .password: return .password
         case .terms: return .terms
         case .email: return .email
         default: return .none

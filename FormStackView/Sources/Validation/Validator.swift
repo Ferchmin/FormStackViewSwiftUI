@@ -26,15 +26,15 @@ public enum ValidationError: Error {
 
     public var message: String {
         let messages: [ValidationError: String] = [
-            .empty: "validation_field_is_required",//.localized,
-            .notNumber: "validation_field_not_number",//.localized,
-            .usernameEmpty: "validation_username_empty",//.localized,
-            .usernameTooShort: "validation_username_too_short",//.localized,
-            .emailEmpty: "validation_email_empty",//.localized,
-            .emailInvalid: "validation_email_invalid",//.localized,
-            .passwordEmpty: "validation_password_empty",//.localized,
-            .passwordTooSimple: "validation_password_too_simple",//.localized,
-            .fieldIsRequired: "validation_field_is_required",//.localized,
+            .empty: "validation_field_is_required",
+            .notNumber: "validation_field_not_number",
+            .usernameEmpty: "validation_username_empty",
+            .usernameTooShort: "validation_username_too_short",
+            .emailEmpty: "validation_email_empty",
+            .emailInvalid: "validation_email_invalid",
+            .passwordEmpty: "validation_password_empty",
+            .passwordTooSimple: "validation_password_too_simple",
+            .fieldIsRequired: "validation_field_is_required",
             .passwordsDoNotMatch: "passwords_do_not_match"
         ]
         return messages[self] ?? String(describing: self)
@@ -111,9 +111,7 @@ public struct PasswordValidator: TextValidator {
 public struct NewPasswordValidator: TextValidator {
 
     public static func validate(text: String) -> ValidationError? {
-        guard !text.isEmpty else {
-            return .passwordEmpty
-        }
+        guard !text.isEmpty else { return .passwordEmpty }
 
         guard text.count >= 8 else { return .passwordTooSimple }
         guard text.rangeOfCharacter(from: .uppercaseLetters) != nil else { return .passwordTooSimple }
