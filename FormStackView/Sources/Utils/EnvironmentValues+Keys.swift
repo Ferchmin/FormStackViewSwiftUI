@@ -47,6 +47,7 @@ public extension EnvironmentValues {
 
 // MARK: Focus state
 private struct FocusedKey: EnvironmentKey {
+    // TO-IMPROVE: Change to FocusState<FormKey?>
     static let defaultValue: Binding<FormKey?> = .constant(nil)
 }
 
