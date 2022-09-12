@@ -5,17 +5,17 @@
 //  Created by Paweł Zgoda-Ferchmin on 25/07/2022.
 //
 
+import FormStackView
 import SwiftUI
 
-struct ToggleInputView<Key: FormKey>: View {
-    var key: Key
+struct ToggleInput: View {
+    var key: FormKey
 
     var body: some View {
-        InputViewReader(key: key) { proxy in
+        ToggleInputReader(key: key) { proxy in
             VStack(alignment: .leading) {
-                HStack {
-                    Toggle(key.rawValue, isOn: proxy.isOn)
-                }
+                Toggle(key.rawValue, isOn: proxy.isOn)
+                    .padding(.horizontal)
                 if let validationError = proxy.validationError {
                     Text(validationError)
                         .font(.system(size: 14))
@@ -28,7 +28,7 @@ struct ToggleInputView<Key: FormKey>: View {
 
 struct InputViewCheckbox_Previews: PreviewProvider {
     static var previews: some View {
-        ToggleInputView(key: FormViewKey.terms)
-            .environmentObject(FormValues<FormViewKey>())
+        ToggleInput(key: ExampleFormKey.terms)
+            .environment(\.formValues, .constant([]))
     }
 }
