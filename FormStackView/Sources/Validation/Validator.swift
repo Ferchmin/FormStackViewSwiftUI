@@ -8,7 +8,11 @@
 import Foundation
 import SwiftUI
 
-public enum ValidationError: Error {
+public protocol ValidationError: Error {
+    var message: String { get }
+}
+
+public enum BaseValidationError: ValidationError {
     case empty
     case notNumber
 
@@ -25,7 +29,7 @@ public enum ValidationError: Error {
     case fieldIsRequired
 
     public var message: String {
-        let messages: [ValidationError: String] = [
+        let messages: [Self: String] = [
             .empty: "validation_field_is_required",
             .notNumber: "validation_field_not_number",
             .usernameEmpty: "validation_username_empty",
@@ -91,18 +95,18 @@ public protocol CheckBoxValidator {
 
 public struct PasswordValidator: TextValidator {
     public static func validate(text: String) -> ValidationError? {
-        guard !text.isEmpty else { return .passwordEmpty }
+        guard !text.isEmpty else { return BaseValidationError.passwordEmpty }
         return nil
     }
 }
 
 public struct NewPasswordValidator: TextValidator {
     public static func validate(text: String) -> ValidationError? {
-        guard !text.isEmpty else { return .passwordEmpty }
+        guard !text.isEmpty else { return BaseValidationError.passwordEmpty }
 
-        guard text.count >= 8 else { return .passwordTooSimple }
-        guard text.rangeOfCharacter(from: .uppercaseLetters) != nil else { return .passwordTooSimple }
-        guard text.rangeOfCharacter(from: .decimalDigits) != nil else { return .passwordTooSimple }
+        guard text.count >= 8 else { return BaseValidationError.passwordTooSimple }
+        guard text.rangeOfCharacter(from: .uppercaseLetters) != nil else { return BaseValidationError.passwordTooSimple }
+        guard text.rangeOfCharacter(from: .decimalDigits) != nil else { return BaseValidationError.passwordTooSimple }
 
         return nil
     }
@@ -110,8 +114,8 @@ public struct NewPasswordValidator: TextValidator {
 
 public struct UsernameValidator: TextValidator {
     public static func validate(text: String) -> ValidationError? {
-        guard !text.isEmpty else { return .usernameEmpty }
-        guard text.count >= 2 else { return .usernameTooShort }
+        guard !text.isEmpty else { return BaseValidationError.usernameEmpty }
+        guard text.count >= 2 else { return BaseValidationError.usernameTooShort }
         return nil
     }
 }
@@ -122,19 +126,19 @@ public struct AlwaysValidValidator: TextValidator {
 
 public struct CheckboxRequiredValidator: CheckBoxValidator {
     public static func validate(isOn: Bool) -> ValidationError? {
-        isOn ? nil : .fieldIsRequired
+        isOn ? nil : BaseValidationError.fieldIsRequired
     }
 }
 
 public struct EmailValidator: TextValidator {
     public static func validate(text: String) -> ValidationError? {
         guard !text.isEmpty else {
-            return .emailEmpty
+            return BaseValidationError.emailEmpty
         }
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         guard predicate.evaluate(with: text) else {
-            return .emailInvalid
+            return BaseValidationError.emailInvalid
         }
         return nil
     }
