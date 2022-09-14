@@ -49,7 +49,12 @@ public extension ValidationError {
     }
 }
 
-public enum ValidationType: String {
+public protocol ValidationType {
+    var textValidator: TextValidator.Type? { get }
+    var checkboxValidator: CheckBoxValidator.Type? { get }
+}
+
+public enum Validation: ValidationType {
     case none
     case username
     case email
@@ -74,23 +79,6 @@ public enum ValidationType: String {
         default: return nil
         }
     }
-
-    public var isSecureText: Bool {
-        switch self {
-        case .password, .newPassword: return true
-        default: return false
-        }
-    }
-
-    public var isPickerTextField: Bool { false }
-
-    public var capitalizationType: UITextAutocapitalizationType {
-        switch self {
-        case .username: return .sentences
-        default: return .none
-        }
-    }
-
 }
 
 public protocol TextValidator {
@@ -109,7 +97,6 @@ public struct PasswordValidator: TextValidator {
 }
 
 public struct NewPasswordValidator: TextValidator {
-
     public static func validate(text: String) -> ValidationError? {
         guard !text.isEmpty else { return .passwordEmpty }
 

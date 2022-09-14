@@ -20,10 +20,10 @@ public enum ExampleFormKey: String, FormKey {
 
     public var validationType: ValidationType {
         switch self {
-        case .password: return .password
-        case .terms: return .terms
-        case .email: return .email
-        default: return .none
+        case .password: return Validation.password
+        case .terms: return Validation.terms
+        case .email: return Validation.email
+        default: return Validation.none
         }
     }
 

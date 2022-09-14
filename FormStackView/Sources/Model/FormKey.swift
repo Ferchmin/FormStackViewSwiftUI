@@ -23,7 +23,7 @@ enum ExampleFormKey: String, FormKey {
     case number
     case terms
 
-    var validationType: ValidationType { .none }
+    var validationType: ValidationType { Validation.none }
     var keyboardType: UIKeyboardType { .default }
 }
 
