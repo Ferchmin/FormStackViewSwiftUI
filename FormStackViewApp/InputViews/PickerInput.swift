@@ -22,6 +22,7 @@ struct PickerInput: View {
                     Picker(selection: proxy.text, label: Text("Test")) {
                         ForEach(values, id: \.self) { Text($0) }
                     }
+                    .onAppear { proxy.text.wrappedValue = values.first ?? "" }
                 }
                 .frame(maxWidth: .infinity)
                 .padding()

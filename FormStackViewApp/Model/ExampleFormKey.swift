@@ -9,12 +9,12 @@ import FormStackView
 import Foundation
 import SwiftUI
 
-public enum ExampleFormKey: String, CaseIterableFormKey {
+public enum ExampleFormKey: String, FormKey {
     case email
     case password
     case firstName
-    case number
     case country
+    case number
     case terms
     case marketing
 
@@ -31,6 +31,7 @@ public enum ExampleFormKey: String, CaseIterableFormKey {
         switch self {
         case .number: return .phonePad
         case .email: return .emailAddress
+        case .password: return .asciiCapable
         default: return .default
         }
     }

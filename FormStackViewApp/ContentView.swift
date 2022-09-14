@@ -19,16 +19,20 @@ struct ContentView: View {
     @State private var isValid: Bool = true
 
     private let validateSubject = PassthroughSubject<Void, Never>()
+    private let focusOrder: [ExampleFormKey] = [.email, .password, .firstName, .number]
 
     var body: some View {
         NavigationView {
             ScrollView {
-                FormStack(values: $values, validateSubject: validateSubject, isValid: $isValid) {
+                FormStack(values: $values,
+                          focusOrder: focusOrder,
+                          validateSubject: validateSubject,
+                          isValid: $isValid) {
                     TextInput(key: ExampleFormKey.email)
                     SecureTextInput(key: ExampleFormKey.password)
                     TextInput(key: ExampleFormKey.firstName)
+                    PickerInput(key: ExampleFormKey.country, values: ["PL", "UK", "DE"])
                     TextInput(key: ExampleFormKey.number)
-                    PickerInput(key: ExampleFormKey.country, values: ["Poland", "United Kingdom", "Germany"])
                     ToggleInput(key: ExampleFormKey.terms)
                     ToggleInput(key: ExampleFormKey.marketing)
                     VStack(spacing: 5) {

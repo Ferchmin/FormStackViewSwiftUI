@@ -11,9 +11,10 @@ import SwiftUI
 public struct FormStack: View {
     @Binding private var values: [FormValue]
     @Binding private var isValid: Bool
-    @State private var focusedKey: FormKey?
     @State private var valuesValidities: [String: Bool] = [:]
 
+    private let focusState: FocusState<String?> = .init()
+    private let focusOrder: [FormKey]?
     private let validateSubject: PassthroughSubject<Void, Never>
     private let alignment: HorizontalAlignment
     private let spacing: CGFloat?
@@ -24,9 +25,14 @@ public struct FormStack: View {
         VStack(alignment: alignment, spacing: spacing) {
             content().any
         }
-        .toolbar { ToolbarItemGroup(placement: .keyboard) { toolbarBuilder?() } }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                if focusOrder != nil { toolbarBuilder?() }
+            }
+        }
         .environment(\.formValues, $values)
-        .environment(\.focusedKey, $focusedKey)
+        .environment(\.focusState, focusState)
+        .environment(\.focusOrder, focusOrder)
         .environment(\.validateSubject, validateSubject)
         .environment(\.valuesValidities, $valuesValidities)
         .onChange(of: valuesValidities) { isValid = $0.allSatisfy { $0.value } }
@@ -35,12 +41,14 @@ public struct FormStack: View {
     public init<Content, Toolbar>(alignment: HorizontalAlignment = .center,
                                   spacing: CGFloat? = nil,
                                   values: Binding<[FormValue]>,
+                                  focusOrder: [FormKey]? = nil,
                                   validateSubject: PassthroughSubject<Void, Never> = .init(),
                                   isValid: Binding<Bool> = .constant(true),
                                   toolbarBuilder: @escaping @autoclosure () -> Toolbar,
                                   @ViewBuilder content: @escaping () -> Content) where Content: View, Toolbar: View {
         self._values = values
         self._isValid = isValid
+        self.focusOrder = focusOrder
         self.validateSubject = validateSubject
         self.alignment = alignment
         self.spacing = spacing
@@ -53,11 +61,13 @@ public extension FormStack {
     init<Content: View>(alignment: HorizontalAlignment = .center,
                         spacing: CGFloat? = nil,
                         values: Binding<[FormValue]>,
+                        focusOrder: [FormKey]? = nil,
                         validateSubject: PassthroughSubject<Void, Never> = .init(),
                         isValid: Binding<Bool> = .constant(true),
                         @ViewBuilder content: @escaping () -> Content) {
         self._values = values
         self._isValid = isValid
+        self.focusOrder = focusOrder
         self.validateSubject = validateSubject
         self.alignment = alignment
         self.spacing = spacing
@@ -68,12 +78,14 @@ public extension FormStack {
     init<Content: View>(alignment: HorizontalAlignment = .center,
                         spacing: CGFloat? = nil,
                         values: Binding<[FormValue]>,
+                        focusOrder: [FormKey]? = nil,
                         validateSubject: PassthroughSubject<Void, Never> = .init(),
                         isValid: Binding<Bool> = .constant(true),
                         toolbarBuilder: (() -> AnyView)?,
                         @ViewBuilder content: @escaping () -> Content) {
         self._values = values
         self._isValid = isValid
+        self.focusOrder = focusOrder
         self.validateSubject = validateSubject
         self.alignment = alignment
         self.spacing = spacing

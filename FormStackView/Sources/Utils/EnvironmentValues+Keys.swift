@@ -46,14 +46,25 @@ public extension EnvironmentValues {
 }
 
 // MARK: Focus state
-private struct FocusedKey: EnvironmentKey {
-    // TO-IMPROVE: Change to FocusState<FormKey?>
-    static let defaultValue: Binding<FormKey?> = .constant(nil)
+private struct FocusStateKey: EnvironmentKey {
+    static let defaultValue: FocusState<String?> = .init()
 }
 
 public extension EnvironmentValues {
-    var focusedKey: Binding<FormKey?> {
-        get { self[FocusedKey.self] }
-        set { self[FocusedKey.self] = newValue }
+    var focusState: FocusState<String?> {
+        get { self[FocusStateKey.self] }
+        set { self[FocusStateKey.self] = newValue }
+    }
+}
+
+// MARK: Focus order
+private struct FocusOrderKey: EnvironmentKey {
+    static let defaultValue: [FormKey]? = nil
+}
+
+public extension EnvironmentValues {
+    var focusOrder: [FormKey]? {
+        get { self[FocusOrderKey.self] }
+        set { self[FocusOrderKey.self] = newValue }
     }
 }

@@ -20,5 +20,116 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "516601A7-BD02-46B6-92D9-4ADF206CAC06"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FormStackView/Sources/Views/KeyboardToolbar.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "next"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "516601A7-BD02-46B6-92D9-4ADF206CAC06 - 62d1c4bee9aaec64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FormStackView.DefaultKeyboardToolbar.next.getter : Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "FormStackViewApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pawel/HYD/FormStackViewSwiftUI/FormStackView/Sources/Views/KeyboardToolbar.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "516601A7-BD02-46B6-92D9-4ADF206CAC06 - 62d1c4bee9aaec64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FormStackView.DefaultKeyboardToolbar.next.getter : Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "FormStackViewApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pawel/HYD/FormStackViewSwiftUI/FormStackView/Sources/Views/KeyboardToolbar.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "444">
+               </Location>
+               <Location
+                  uuid = "516601A7-BD02-46B6-92D9-4ADF206CAC06 - 62d1c4bee9aaec64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FormStackView.DefaultKeyboardToolbar.next.getter : Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "FormStackViewApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pawel/HYD/FormStackViewSwiftUI/FormStackView/Sources/Views/KeyboardToolbar.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "508">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "704F535C-ABBD-43AD-A120-FBF73A30DDE1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FormStackView/Sources/Model/FormKey.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "advanced(by:from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "704F535C-ABBD-43AD-A120-FBF73A30DDE1 - fba4421b39531f09"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift.Array&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Equatable&gt;.advanced(by: Swift.Int, from: &#x3c4;_0_0) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "FormStackViewApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pawel/HYD/FormStackViewSwiftUI/FormStackView/Sources/Model/FormKey.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "704F535C-ABBD-43AD-A120-FBF73A30DDE1 - fba4421b39531f09"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift.Array&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Equatable&gt;.advanced(by: Swift.Int, from: &#x3c4;_0_0) -&gt; Swift.Optional&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "FormStackViewApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pawel/HYD/FormStackViewSwiftUI/FormStackView/Sources/Model/FormKey.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "184">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
