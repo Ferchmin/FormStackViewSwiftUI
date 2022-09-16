@@ -19,33 +19,32 @@ struct ContentView: View {
     @State private var isValid: Bool = true
 
     private let validateSubject = PassthroughSubject<Void, Never>()
-    private let focusOrder: [ExampleFormKey] = [.email, .password, .firstName, .number]
 
     var body: some View {
         NavigationView {
             ScrollView {
-                FormStack(values: $values,
-                          focusOrder: focusOrder,
-                          validateSubject: validateSubject,
-                          isValid: $isValid) {
-                    TextInput(key: ExampleFormKey.email)
-                    SecureTextInput(key: ExampleFormKey.password)
-                    TextInput(key: ExampleFormKey.firstName)
-                    PickerInput(key: ExampleFormKey.country, values: ["PL", "UK", "DE"])
-                    TextInput(key: ExampleFormKey.number)
-                    ToggleInput(key: ExampleFormKey.terms)
-                    ToggleInput(key: ExampleFormKey.marketing)
-                    VStack(spacing: 5) {
-                        Divider().padding()
-                        ForEach(values) { value in
-                            HStack {
-                                Text("\(value.key.rawValue):")
-                                Spacer()
-                                Text("\(value.text ?? value.isOn?.description ?? "")")
-                            }
+                VStack(spacing: 5) {
+                    FormStack(values: $values, validateSubject: validateSubject, isValid: $isValid) {
+                        TextInput(key: ExampleFormKey.email)
+                        SecureTextInput(key: ExampleFormKey.password)
+                        TextInput(key: ExampleFormKey.firstName)
+                        PickerInput(key: ExampleFormKey.country, values: ["PL", "UK", "DE"])
+                        TextInput(key: ExampleFormKey.number)
+                        ToggleInput(key: ExampleFormKey.terms)
+                        ToggleInput(key: ExampleFormKey.marketing)
+                    }
+                    Divider().padding()
+                    ForEach(values) { value in
+                        HStack {
+                            Text("\(value.key.rawValue):")
+                            Text("\(value.text ?? value.isOn?.description ?? "")")
                         }
-                        Button("Validate", action: validateSubject.send)
-                        if !isValid { Text("Form view has errors").foregroundColor(.red) }
+                    }
+                    Spacer()
+                    Button("Validate", action: validateSubject.send)
+                    if !isValid {
+                        Text("Form view has errors")
+                            .foregroundColor(.red)
                     }
                 }
                 .padding()

@@ -9,8 +9,6 @@ import SwiftUI
 
 @main
 struct FormStackViewApp: App {
-    @FocusState var focus: String?
-
     var body: some Scene {
         WindowGroup {
             ContentView()

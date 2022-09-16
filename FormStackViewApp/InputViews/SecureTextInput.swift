@@ -9,7 +9,7 @@ import FormStackView
 import Foundation
 import SwiftUI
 
-struct SecureTextInput: View {
+struct SecureTextInput: View, FocusableView {
     private enum FocusedState: Hashable {
         case secure
         case regular

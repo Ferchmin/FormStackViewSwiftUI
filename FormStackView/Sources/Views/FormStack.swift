@@ -18,16 +18,18 @@ public struct FormStack: View {
     private let validateSubject: PassthroughSubject<Void, Never>
     private let alignment: HorizontalAlignment
     private let spacing: CGFloat?
-    private let content: () -> AnyView
-    private let toolbarBuilder: (() -> AnyView)?
+    private let content: [any View]
+    private let toolbarBuilder: (() -> any View)?
 
     public var body: some View {
         VStack(alignment: alignment, spacing: spacing) {
-            content().any
+            ForEach(content.indices, id: \.self) { index in
+                content[index].any
+            }
         }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
-                if focusOrder != nil { toolbarBuilder?() }
+                if focusOrder?.isEmpty == false { toolbarBuilder?().any }
             }
         }
         .environment(\.formValues, $values)
@@ -38,59 +40,56 @@ public struct FormStack: View {
         .onChange(of: valuesValidities) { isValid = $0.allSatisfy { $0.value } }
     }
 
-    public init<Content, Toolbar>(alignment: HorizontalAlignment = .center,
-                                  spacing: CGFloat? = nil,
-                                  values: Binding<[FormValue]>,
-                                  focusOrder: [FormKey]? = nil,
-                                  validateSubject: PassthroughSubject<Void, Never> = .init(),
-                                  isValid: Binding<Bool> = .constant(true),
-                                  toolbarBuilder: @escaping @autoclosure () -> Toolbar,
-                                  @ViewBuilder content: @escaping () -> Content) where Content: View, Toolbar: View {
+    public init(alignment: HorizontalAlignment = .center,
+                spacing: CGFloat? = nil,
+                values: Binding<[FormValue]>,
+                validateSubject: PassthroughSubject<Void, Never> = .init(),
+                isValid: Binding<Bool> = .constant(true),
+                toolbarBuilder: @escaping @autoclosure () -> some View,
+                @ArrayBuilder<View> content: @escaping () -> [any View]) {
         self._values = values
         self._isValid = isValid
-        self.focusOrder = focusOrder
-        self.validateSubject = validateSubject
-        self.alignment = alignment
-        self.spacing = spacing
-        self.toolbarBuilder = { toolbarBuilder().any }
-        self.content = { content().any }
-    }
-}
-
-public extension FormStack {
-    init<Content: View>(alignment: HorizontalAlignment = .center,
-                        spacing: CGFloat? = nil,
-                        values: Binding<[FormValue]>,
-                        focusOrder: [FormKey]? = nil,
-                        validateSubject: PassthroughSubject<Void, Never> = .init(),
-                        isValid: Binding<Bool> = .constant(true),
-                        @ViewBuilder content: @escaping () -> Content) {
-        self._values = values
-        self._isValid = isValid
-        self.focusOrder = focusOrder
-        self.validateSubject = validateSubject
-        self.alignment = alignment
-        self.spacing = spacing
-        self.toolbarBuilder = { DefaultKeyboardToolbar().any }
-        self.content = { content().any }
-    }
-
-    init<Content: View>(alignment: HorizontalAlignment = .center,
-                        spacing: CGFloat? = nil,
-                        values: Binding<[FormValue]>,
-                        focusOrder: [FormKey]? = nil,
-                        validateSubject: PassthroughSubject<Void, Never> = .init(),
-                        isValid: Binding<Bool> = .constant(true),
-                        toolbarBuilder: (() -> AnyView)?,
-                        @ViewBuilder content: @escaping () -> Content) {
-        self._values = values
-        self._isValid = isValid
-        self.focusOrder = focusOrder
+        self.focusOrder = content().compactMap { ($0 as? FocusableView)?.key }
         self.validateSubject = validateSubject
         self.alignment = alignment
         self.spacing = spacing
         self.toolbarBuilder = toolbarBuilder
-        self.content = { content().any }
+        self.content = content()
+    }
+}
+
+public extension FormStack {
+    init(alignment: HorizontalAlignment = .center,
+         spacing: CGFloat? = nil,
+         values: Binding<[FormValue]>,
+         validateSubject: PassthroughSubject<Void, Never> = .init(),
+         isValid: Binding<Bool> = .constant(true),
+         @ArrayBuilder<View> content: @escaping () -> [any View]) {
+        self._values = values
+        self._isValid = isValid
+        self.focusOrder = content().compactMap { ($0 as? FocusableView)?.key }
+        self.validateSubject = validateSubject
+        self.alignment = alignment
+        self.spacing = spacing
+        self.toolbarBuilder = { DefaultKeyboardToolbar().any }
+        self.content = content()
+    }
+
+    init(alignment: HorizontalAlignment = .center,
+         spacing: CGFloat? = nil,
+         values: Binding<[FormValue]>,
+         validateSubject: PassthroughSubject<Void, Never> = .init(),
+         isValid: Binding<Bool> = .constant(true),
+         toolbarBuilder: (() -> some View)?,
+         @ArrayBuilder<AnyView> content: @escaping () -> [AnyView]) {
+        self._values = values
+        self._isValid = isValid
+        self.focusOrder = content().compactMap { ($0 as? FocusableView)?.key }
+        self.validateSubject = validateSubject
+        self.alignment = alignment
+        self.spacing = spacing
+        self.toolbarBuilder = toolbarBuilder
+        self.content = content()
     }
 }
 
@@ -100,8 +99,8 @@ private struct FormStackView_Previews: PreviewProvider {
 
     public static var previews: some View {
         FormStack(values: .constant([])) {
-            TextInputReader(key: emailKey) { TextField(emailKey.rawValue, text: $0.text) }
-            ToggleInputReader(key: termsKey) { Toggle(termsKey.rawValue, isOn: $0.isOn) }
+            TextInputReader(key: emailKey) { TextField("Email", text: $0.text) }
+            ToggleInputReader(key: termsKey) { Toggle("Terms", isOn: $0.isOn) }
         }
     }
 }

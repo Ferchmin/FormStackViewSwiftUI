@@ -9,7 +9,7 @@ import FormStackView
 import Combine
 import SwiftUI
 
-struct TextInput: View {
+struct TextInput: View, FocusableView {
     var key: FormKey
 
     var body: some View {

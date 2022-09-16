@@ -40,13 +40,11 @@ public struct ToggleInputReader<Content: View>: View {
     }
 }
 
-public struct TextInputReaderProxy {
-    public var text: Binding<String>
-    public var validationError: String?
-    public var isFocused: Bool
-}
-
-public struct ToggleInputReaderProxy {
+public struct ToggleInputReaderProxy: Equatable {
     public var isOn: Binding<Bool>
     public var validationError: String?
+
+    public static func == (lhs: ToggleInputReaderProxy, rhs: ToggleInputReaderProxy) -> Bool {
+        lhs.validationError == rhs.validationError && lhs.isOn.wrappedValue == rhs.isOn.wrappedValue
+    }
 }
