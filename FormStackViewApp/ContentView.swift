@@ -26,8 +26,8 @@ struct ContentView: View {
                 VStack(spacing: 5) {
                     FormStack(values: $values, validateSubject: validateSubject, isValid: $isValid) {
                         TextInput(key: .email)
-                        SecureTextInput(key: .password)
                         TextInput(key: .firstName)
+                        SecureTextInput(key: .password)
                         PickerInput(key: .country, values: ["PL", "UK", "DE"])
                         TextInput(key: .number)
                         ToggleInput(key: .terms)
