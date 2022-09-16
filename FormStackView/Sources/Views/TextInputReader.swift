@@ -8,7 +8,7 @@
 import SwiftUI
 
 public protocol FocusableView {
-    var key: FormKey { get }
+    var key: any FormKey { get }
 }
 
 public struct TextInputReader<Content: View>: View, FocusableView {
