@@ -8,10 +8,11 @@
 import SwiftUI
 
 public protocol FocusableView {
-    var key: any FormKey { get }
+    associatedtype Key: FormKey
+    var key: Key { get }
 }
 
-public struct TextInputReader<Content: View>: View, FocusableView {
+public struct TextInputReader<Content: View, Key: FormKey>: View, FocusableView {
     @Environment(\.focusState) private var focusState
     @Environment(\.focusOrder) private var focusOrder
     @Environment(\.formValues) private var values
@@ -21,7 +22,7 @@ public struct TextInputReader<Content: View>: View, FocusableView {
     @State private var validationError: ValidationError?
     @State private var shouldValidate: Bool = false
 
-    public let key: FormKey
+    public let key: Key
 
     private var next: String? {
         focusOrder?.map { $0.rawValue }.advanced(by: 1, from: key.rawValue)
@@ -48,7 +49,7 @@ public struct TextInputReader<Content: View>: View, FocusableView {
             .onSubmit { focusState.wrappedValue = next }
     }
 
-    public init(key: FormKey, content: @escaping (TextInputReaderProxy) -> Content) {
+    public init(key: Key, content: @escaping (TextInputReaderProxy) -> Content) {
         self.key = key
         self.content = content
     }

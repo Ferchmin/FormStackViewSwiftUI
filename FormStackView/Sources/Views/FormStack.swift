@@ -49,7 +49,7 @@ public struct FormStack: View {
                 @ArrayBuilder<View> content: @escaping () -> [any View]) {
         self._values = values
         self._isValid = isValid
-        self.focusOrder = content().compactMap { ($0 as? FocusableView)?.key }
+        self.focusOrder = content().compactMap { ($0 as? any FocusableView)?.key }
         self.validateSubject = validateSubject
         self.alignment = alignment
         self.spacing = spacing
@@ -67,7 +67,7 @@ public extension FormStack {
          @ArrayBuilder<View> content: @escaping () -> [any View]) {
         self._values = values
         self._isValid = isValid
-        self.focusOrder = content().compactMap { ($0 as? FocusableView)?.key }
+        self.focusOrder = content().compactMap { ($0 as? any FocusableView)?.key }
         self.validateSubject = validateSubject
         self.alignment = alignment
         self.spacing = spacing
@@ -84,7 +84,7 @@ public extension FormStack {
          @ArrayBuilder<AnyView> content: @escaping () -> [AnyView]) {
         self._values = values
         self._isValid = isValid
-        self.focusOrder = content().compactMap { ($0 as? FocusableView)?.key }
+        self.focusOrder = content().compactMap { ($0 as? any FocusableView)?.key }
         self.validateSubject = validateSubject
         self.alignment = alignment
         self.spacing = spacing

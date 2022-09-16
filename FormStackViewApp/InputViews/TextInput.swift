@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 struct TextInput: View, FocusableView {
-    var key: FormKey
+    var key: ExampleFormKey
 
     var body: some View {
         TextInputReader(key: key) { proxy in
@@ -34,7 +34,7 @@ struct TextInput: View, FocusableView {
 
 struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
-        TextInput(key: ExampleFormKey.email)
+        TextInput(key: .email)
             .environment(\.formValues, .constant([]))
     }
 }

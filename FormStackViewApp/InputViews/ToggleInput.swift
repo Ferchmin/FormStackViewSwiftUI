@@ -9,7 +9,7 @@ import FormStackView
 import SwiftUI
 
 struct ToggleInput: View {
-    var key: FormKey
+    var key: ExampleFormKey
 
     var body: some View {
         ToggleInputReader(key: key) { proxy in
@@ -28,7 +28,7 @@ struct ToggleInput: View {
 
 struct InputViewCheckbox_Previews: PreviewProvider {
     static var previews: some View {
-        ToggleInput(key: ExampleFormKey.terms)
+        ToggleInput(key: .terms)
             .environment(\.formValues, .constant([]))
     }
 }

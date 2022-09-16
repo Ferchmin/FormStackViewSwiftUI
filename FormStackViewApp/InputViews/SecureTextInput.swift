@@ -18,7 +18,7 @@ struct SecureTextInput: View, FocusableView {
     @State var isSecure: Bool = true
     @FocusState private var focusedState: FocusedState?
 
-    var key: FormKey
+    var key: ExampleFormKey
 
     var body: some View {
         TextInputReader(key: key) { proxy in
@@ -54,7 +54,7 @@ struct SecureTextInput: View, FocusableView {
 
 struct SecureTextInputView_Previews: PreviewProvider {
     static var previews: some View {
-        SecureTextInput(key: ExampleFormKey.password)
+        SecureTextInput(key: .password)
             .environment(\.formValues, .constant([]))
     }
 }

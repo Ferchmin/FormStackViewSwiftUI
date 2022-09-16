@@ -25,13 +25,13 @@ struct ContentView: View {
             ScrollView {
                 VStack(spacing: 5) {
                     FormStack(values: $values, validateSubject: validateSubject, isValid: $isValid) {
-                        TextInput(key: ExampleFormKey.email)
-                        SecureTextInput(key: ExampleFormKey.password)
-                        TextInput(key: ExampleFormKey.firstName)
-                        PickerInput(key: ExampleFormKey.country, values: ["PL", "UK", "DE"])
-                        TextInput(key: ExampleFormKey.number)
-                        ToggleInput(key: ExampleFormKey.terms)
-                        ToggleInput(key: ExampleFormKey.marketing)
+                        TextInput(key: .email)
+                        SecureTextInput(key: .password)
+                        TextInput(key: .firstName)
+                        PickerInput(key: .country, values: ["PL", "UK", "DE"])
+                        TextInput(key: .number)
+                        ToggleInput(key: .terms)
+                        ToggleInput(key: .marketing)
                     }
                     Divider().padding()
                     ForEach(values) { value in
