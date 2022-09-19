@@ -14,7 +14,7 @@ public struct FormStack: View {
     @State private var valuesValidities: [String: Bool] = [:]
 
     private let focusState: FocusState<String?> = .init()
-    private let focusOrder: [FormKey]?
+    private let focusOrder: [FormKey]
     private let validateSubject: PassthroughSubject<Void, Never>
     private let alignment: HorizontalAlignment
     private let spacing: CGFloat?
@@ -29,7 +29,7 @@ public struct FormStack: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
-                if focusOrder?.isEmpty == false { toolbarBuilder?().any }
+                if !focusOrder.isEmpty { toolbarBuilder?().any }
             }
         }
         .environment(\.formValues, $values)
