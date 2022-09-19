@@ -81,7 +81,7 @@ public extension FormStack {
          validateSubject: PassthroughSubject<Void, Never> = .init(),
          isValid: Binding<Bool> = .constant(true),
          toolbarBuilder: (() -> some View)?,
-         @ArrayBuilder<AnyView> content: @escaping () -> [AnyView]) {
+         @ArrayBuilder<View> content: @escaping () -> [any View]) {
         self._values = values
         self._isValid = isValid
         self.focusOrder = content().compactMap { ($0 as? any FocusableView)?.key }
