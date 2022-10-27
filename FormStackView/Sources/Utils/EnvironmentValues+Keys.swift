@@ -9,42 +9,6 @@ import Combine
 import Foundation
 import SwiftUI
 
-// MARK: Form values
-private struct FormValuesKey: EnvironmentKey {
-    static let defaultValue: Binding<[FormValue]> = .constant([])
-}
-
-public extension EnvironmentValues {
-    var formValues: Binding<[FormValue]> {
-        get { self[FormValuesKey.self] }
-        set { self[FormValuesKey.self] = newValue }
-    }
-}
-
-// MARK: Validate
-private struct ValidateSubjectKey: EnvironmentKey {
-    static let defaultValue: PassthroughSubject<Void, Never> = .init()
-}
-
-public extension EnvironmentValues {
-    var validateSubject: PassthroughSubject<Void, Never> {
-        get { self[ValidateSubjectKey.self] }
-        set { self[ValidateSubjectKey.self] = newValue }
-    }
-}
-
-// MARK: Is valid
-private struct ValuesValiditiesKey: EnvironmentKey {
-    static let defaultValue: Binding<[String: Bool]> = .constant([:])
-}
-
-public extension EnvironmentValues {
-    var valuesValidities: Binding<[String: Bool]> {
-        get { self[ValuesValiditiesKey.self] }
-        set { self[ValuesValiditiesKey.self] = newValue }
-    }
-}
-
 // MARK: Focus state
 private struct FocusStateKey: EnvironmentKey {
     static let defaultValue: FocusState<String?> = .init()

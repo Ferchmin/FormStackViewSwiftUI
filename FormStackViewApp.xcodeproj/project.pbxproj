@@ -399,7 +399,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Ferchmin/FormStackViewSwiftUI";
 			requirement = {
-				branch = feature/focusOrder;
+				branch = feature/synchroniousValidation;
 				kind = branch;
 			};
 		};

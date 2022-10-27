@@ -9,7 +9,7 @@ import FormStackView
 import Combine
 import SwiftUI
 
-struct TextInput: View, FocusableView {
+struct TextInput: View, FocusableValidatable {
     var key: ExampleFormKey
 
     var body: some View {
@@ -35,6 +35,5 @@ struct TextInput: View, FocusableView {
 struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
         TextInput(key: .email)
-            .environment(\.formValues, .constant([]))
     }
 }

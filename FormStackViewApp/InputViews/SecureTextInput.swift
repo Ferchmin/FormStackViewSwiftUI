@@ -9,7 +9,7 @@ import FormStackView
 import Foundation
 import SwiftUI
 
-struct SecureTextInput: View, FocusableView {
+struct SecureTextInput: View, FocusableValidatable {
     private enum FocusedState: Hashable {
         case secure
         case regular
@@ -55,6 +55,5 @@ struct SecureTextInput: View, FocusableView {
 struct SecureTextInputView_Previews: PreviewProvider {
     static var previews: some View {
         SecureTextInput(key: .password)
-            .environment(\.formValues, .constant([]))
     }
 }

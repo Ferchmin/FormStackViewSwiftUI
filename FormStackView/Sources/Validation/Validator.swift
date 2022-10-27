@@ -56,6 +56,18 @@ public extension ValidationError {
 public protocol ValidationType {
     var textValidator: TextValidator.Type? { get }
     var checkboxValidator: CheckBoxValidator.Type? { get }
+
+    func validate(_ formValue: FormValue?) -> ValidationError?
+}
+
+public extension ValidationType {
+    func validate(_ formValue: FormValue?) -> ValidationError? {
+        switch formValue {
+        case .text(let text, _): return textValidator?.validate(text: text)
+        case .checkbox(let isOn, _): return checkboxValidator?.validate(isOn: isOn)
+        case .none: return textValidator?.validate(text: "") ?? checkboxValidator?.validate(isOn: false)
+        }
+    }
 }
 
 public enum Validation: ValidationType {

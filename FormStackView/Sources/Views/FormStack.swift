@@ -9,13 +9,11 @@ import Combine
 import SwiftUI
 
 public struct FormStack: View {
-    @Binding private var values: [FormValue]
-    @Binding private var isValid: Bool
-    @State private var valuesValidities: [String: Bool] = [:]
+    @StateObject private var viewModel: FormStackViewModel
 
     private let focusState: FocusState<String?> = .init()
     private let focusOrder: [FormKey]
-    private let validateSubject: PassthroughSubject<Void, Never>
+
     private let alignment: HorizontalAlignment
     private let spacing: CGFloat?
     private let content: [any View]
@@ -32,12 +30,9 @@ public struct FormStack: View {
                 if !focusOrder.isEmpty { toolbarBuilder?().any }
             }
         }
-        .environment(\.formValues, $values)
+        .environmentObject(viewModel)
         .environment(\.focusState, focusState)
         .environment(\.focusOrder, focusOrder)
-        .environment(\.validateSubject, validateSubject)
-        .environment(\.valuesValidities, $valuesValidities)
-        .onChange(of: valuesValidities) { isValid = $0.allSatisfy { $0.value } }
     }
 
     public init(alignment: HorizontalAlignment = .center,
@@ -47,14 +42,16 @@ public struct FormStack: View {
                 isValid: Binding<Bool> = .constant(true),
                 toolbarBuilder: @escaping @autoclosure () -> some View,
                 @ArrayBuilder<View> content: @escaping () -> [any View]) {
-        self._values = values
-        self._isValid = isValid
-        self.focusOrder = content().compactMap { ($0 as? any FocusableView)?.key }
-        self.validateSubject = validateSubject
+        self.focusOrder = content().compactMap { ($0 as? any Focusable)?.key }
         self.alignment = alignment
         self.spacing = spacing
         self.toolbarBuilder = toolbarBuilder
         self.content = content()
+
+        self._viewModel = StateObject(wrappedValue: .init(values: values,
+                                                          keys: content().compactMap { ($0 as? any Validatable)?.key },
+                                                          isValid: isValid,
+                                                          validateSubject: validateSubject))
     }
 }
 
@@ -65,14 +62,16 @@ public extension FormStack {
          validateSubject: PassthroughSubject<Void, Never> = .init(),
          isValid: Binding<Bool> = .constant(true),
          @ArrayBuilder<View> content: @escaping () -> [any View]) {
-        self._values = values
-        self._isValid = isValid
-        self.focusOrder = content().compactMap { ($0 as? any FocusableView)?.key }
-        self.validateSubject = validateSubject
+        self.focusOrder = content().compactMap { ($0 as? any Focusable)?.key }
         self.alignment = alignment
         self.spacing = spacing
         self.toolbarBuilder = { DefaultKeyboardToolbar().any }
         self.content = content()
+
+        self._viewModel = StateObject(wrappedValue: .init(values: values,
+                                                          keys: content().compactMap { ($0 as? any Validatable)?.key },
+                                                          isValid: isValid,
+                                                          validateSubject: validateSubject))
     }
 
     init(alignment: HorizontalAlignment = .center,
@@ -82,14 +81,57 @@ public extension FormStack {
          isValid: Binding<Bool> = .constant(true),
          toolbarBuilder: (() -> some View)?,
          @ArrayBuilder<View> content: @escaping () -> [any View]) {
-        self._values = values
-        self._isValid = isValid
-        self.focusOrder = content().compactMap { ($0 as? any FocusableView)?.key }
-        self.validateSubject = validateSubject
+        self.focusOrder = content().compactMap { ($0 as? any Focusable)?.key }
         self.alignment = alignment
         self.spacing = spacing
         self.toolbarBuilder = toolbarBuilder
         self.content = content()
+
+        self._viewModel = StateObject(wrappedValue: .init(values: values,
+                                                          keys: content().compactMap { ($0 as? any Validatable)?.key },
+                                                          isValid: isValid,
+                                                          validateSubject: validateSubject))
+    }
+}
+
+public class FormStackViewModel: ObservableObject {
+    @Published var values: [FormValue]
+    @Published var isValid: Bool = true
+    @Published var validationErrors: [String: ValidationError?] = [:]
+
+    let validateSubject: PassthroughSubject<Void, Never>
+
+    private var subscriptions: [AnyCancellable] = []
+    private let keys: [FormKey]
+
+    init(values: Binding<[FormValue]>,
+         keys: [FormKey],
+         isValid: Binding<Bool>,
+         validateSubject: PassthroughSubject<Void, Never>) {
+        self.values = values.wrappedValue
+        self.validateSubject = validateSubject
+        self.keys = keys
+
+        setupBinding(valuesBinding: values, isValidBinding: isValid)
+    }
+
+    private func setupBinding(valuesBinding: Binding<[FormValue]>, isValidBinding: Binding<Bool>) {
+        $values
+            .sink { valuesBinding.wrappedValue = $0 }
+            .store(in: &subscriptions)
+
+        validateSubject
+            .map { [unowned self] in
+                keys.map { validationErrors[$0.rawValue] ?? $0.validationType.validate(values.value(for: $0)) }
+            }
+            .map { $0.allSatisfy { $0 == nil } }
+            .sink { isValidBinding.wrappedValue = $0 }
+            .store(in: &subscriptions)
+
+        $validationErrors
+            .map { errors -> Bool in errors.values.allSatisfy { $0 == nil } }
+            .sink { isValidBinding.wrappedValue = $0 }
+            .store(in: &subscriptions)
     }
 }
 

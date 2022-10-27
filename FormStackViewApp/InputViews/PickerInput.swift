@@ -39,6 +39,5 @@ struct PickerInput: View {
 struct PickerInputView_Previews: PreviewProvider {
     static var previews: some View {
         PickerInput(key: .country, values: ["Poland", "UK", "Germany"])
-            .environment(\.formValues, .constant([]))
     }
 }

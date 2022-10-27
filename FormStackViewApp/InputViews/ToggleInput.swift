@@ -8,7 +8,7 @@
 import FormStackView
 import SwiftUI
 
-struct ToggleInput: View {
+struct ToggleInput: View, Validatable {
     var key: ExampleFormKey
 
     var body: some View {
@@ -29,6 +29,5 @@ struct ToggleInput: View {
 struct InputViewCheckbox_Previews: PreviewProvider {
     static var previews: some View {
         ToggleInput(key: .terms)
-            .environment(\.formValues, .constant([]))
     }
 }

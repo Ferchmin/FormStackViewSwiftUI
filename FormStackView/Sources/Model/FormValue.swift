@@ -53,20 +53,32 @@ extension FormValue: Hashable , Identifiable {
 }
 
 public extension Binding where Value == [FormValue] {
-    func text(for key: FormKey) -> Binding<String> {
+    func value(for key: FormKey) -> Binding<FormValue> {
         self
             .map(get: { $0.first(where: { $0.key.rawValue == key.rawValue }) ?? .text(text: "", key: key) },
                  set: { wrappedValue.replaced(value: $0) })
-            .map(get: { $0.text ?? "" },
-                 set: { .text(text: $0, key: key) })
+    }
+    
+    func text(for key: FormKey) -> Binding<String> {
+        self.value(for: key).map(get: { $0.text ?? "" },
+                                 set: { .text(text: $0, key: key) })
     }
 
     func isOn(for key: FormKey) -> Binding<Bool> {
-        self
-            .map(get: { $0.first(where: { $0.key.rawValue == key.rawValue }) ?? .checkbox(value: false, key: key) },
-                 set: { wrappedValue.replaced(value: $0) })
-            .map(get: { $0.isOn ?? false },
-                 set: { .checkbox(value: $0, key: key) })
+        self.value(for: key).map(get: { $0.isOn ?? false },
+                                 set: { .checkbox(value: $0, key: key) })
+    }
+}
+
+public extension Binding where Value == FormValue {
+    var text: Binding<String> {
+        self.map(get: { $0.text ?? "" },
+                 set: { .text(text: $0, key: wrappedValue.key) })
+    }
+
+    var isOn: Binding<Bool> {
+        self.map(get: { $0.isOn ?? false },
+                 set: { .checkbox(value: $0, key: wrappedValue.key) })
     }
 }
 
@@ -81,5 +93,17 @@ public extension Array where Element == FormValue {
         }
         newSelf.append(value)
         return newSelf
+    }
+
+    func value(for key: FormKey) -> FormValue? {
+        self.first { $0.key.rawValue == key.rawValue }
+    }
+
+    func text(for key: FormKey) -> String {
+        self.value(for: key)?.text ?? ""
+    }
+
+    func isOn(for key: FormKey) -> Bool {
+        self.value(for: key)?.isOn ?? false
     }
 }

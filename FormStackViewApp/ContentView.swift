@@ -43,8 +43,7 @@ struct ContentView: View {
                     Spacer()
                     Button("Validate", action: validateSubject.send)
                     if !isValid {
-                        Text("Form view has errors")
-                            .foregroundColor(.red)
+                        Text("Form view has errors").foregroundColor(.red)
                     }
                 }
                 .padding()
