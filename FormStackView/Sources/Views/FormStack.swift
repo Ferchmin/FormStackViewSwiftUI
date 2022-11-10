@@ -104,10 +104,10 @@ public class FormStackViewModel: ObservableObject {
     private var subscriptions: [AnyCancellable] = []
     private let keys: [FormKey]
 
-    init(values: Binding<[FormValue]>,
-         keys: [FormKey],
-         isValid: Binding<Bool>,
-         validateSubject: PassthroughSubject<Void, Never>) {
+    public init(values: Binding<[FormValue]> = .constant([]),
+                keys: [FormKey] = [],
+                isValid: Binding<Bool> = .constant(true),
+                validateSubject: PassthroughSubject<Void, Never> = .init()) {
         self.values = values.wrappedValue
         self.validateSubject = validateSubject
         self.keys = keys

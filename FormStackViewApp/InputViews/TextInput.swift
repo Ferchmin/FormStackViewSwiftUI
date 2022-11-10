@@ -35,5 +35,6 @@ struct TextInput: View, FocusableValidatable {
 struct TextInputView_Previews: PreviewProvider {
     static var previews: some View {
         TextInput(key: .email)
+            .environmentObject(FormStackViewModel())
     }
 }
