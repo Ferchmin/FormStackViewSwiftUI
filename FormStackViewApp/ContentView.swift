@@ -45,6 +45,9 @@ struct ContentView: View {
                     if !isValid {
                         Text("Form view has errors").foregroundColor(.red)
                     }
+                    Button("REPLACE") {
+                        values = [.text(text: "test@test.pl", key: ExampleFormKey.email)]
+                    }
                 }
                 .padding()
             }

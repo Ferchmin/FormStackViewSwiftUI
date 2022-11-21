@@ -11,6 +11,8 @@ import SwiftUI
 public struct FormStack: View {
     @StateObject private var viewModel: FormStackViewModel
 
+    private let valuesBinding: Binding<[FormValue]>
+
     private let focusState: FocusState<String?> = .init()
     private let focusOrder: [FormKey]
 
@@ -30,6 +32,7 @@ public struct FormStack: View {
                 if !focusOrder.isEmpty { toolbarBuilder?().any }
             }
         }
+        .onChange(of: valuesBinding.wrappedValue) { viewModel.values = $0 }
         .environmentObject(viewModel)
         .environment(\.focusState, focusState)
         .environment(\.focusOrder, focusOrder)
@@ -47,6 +50,8 @@ public struct FormStack: View {
         self.spacing = spacing
         self.toolbarBuilder = toolbarBuilder
         self.content = content()
+
+        self.valuesBinding = values
 
         self._viewModel = StateObject(wrappedValue: .init(values: values,
                                                           keys: content().compactMap { ($0 as? any Validatable)?.key },
@@ -68,6 +73,8 @@ public extension FormStack {
         self.toolbarBuilder = { DefaultKeyboardToolbar().any }
         self.content = content()
 
+        self.valuesBinding = values
+
         self._viewModel = StateObject(wrappedValue: .init(values: values,
                                                           keys: content().compactMap { ($0 as? any Validatable)?.key },
                                                           isValid: isValid,
@@ -86,6 +93,8 @@ public extension FormStack {
         self.spacing = spacing
         self.toolbarBuilder = toolbarBuilder
         self.content = content()
+
+        self.valuesBinding = values
 
         self._viewModel = StateObject(wrappedValue: .init(values: values,
                                                           keys: content().compactMap { ($0 as? any Validatable)?.key },
