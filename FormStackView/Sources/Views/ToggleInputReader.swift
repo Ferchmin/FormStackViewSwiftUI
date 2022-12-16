@@ -25,6 +25,7 @@ public struct ToggleInputReader<Content: View>: View {
         content(proxy)
             .onChange(of: isOn.wrappedValue) { validate($0) }
             .onReceive(formViewModel.validateSubject) { validate(isOn.wrappedValue) }
+            .id(key.rawValue)
     }
 
     public init(key: FormKey, content: @escaping (ToggleInputReaderProxy) -> Content) {

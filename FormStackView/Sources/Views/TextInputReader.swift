@@ -46,6 +46,7 @@ public struct TextInputReader<Content: View, Key: FormKey>: View {
             .keyboardType(key.keyboardType)
             .submitLabel(next == nil ? .done : .next)
             .onSubmit { focusState.wrappedValue = next }
+            .id(key.rawValue)
     }
 
     private let content: (TextInputReaderProxy) -> Content
