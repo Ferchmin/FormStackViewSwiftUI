@@ -17,6 +17,7 @@ private let inputValues: [FormValue] = [.text(text: "mail@mail.com", key: Exampl
 struct ContentView: View {
     @State private var values: [FormValue] = [] // inputValues
     @State private var isValid: Bool = true
+    @FocusState private var focusState: String?
 
     private let validateSubject = PassthroughSubject<Void, Never>()
 
@@ -24,7 +25,7 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 5) {
-                    FormStack(values: $values, validateSubject: validateSubject, isValid: $isValid) {
+                    FormStack(values: $values, validateSubject: validateSubject, isValid: $isValid, focusState: _focusState) {
                         TextInput(key: .email)
                         TextInput(key: .firstName)
                         SecureTextInput(key: .password)

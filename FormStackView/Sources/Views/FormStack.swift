@@ -13,7 +13,7 @@ public struct FormStack: View {
 
     private let valuesBinding: Binding<[FormValue]>
 
-    private let focusState: FocusState<String?> = .init()
+    private let focusState: FocusState<String?>
     private let focusOrder: [FormKey]
 
     private let alignment: HorizontalAlignment
@@ -43,6 +43,7 @@ public struct FormStack: View {
                 values: Binding<[FormValue]>,
                 validateSubject: PassthroughSubject<Void, Never> = .init(),
                 isValid: Binding<Bool> = .constant(true),
+                focusState: FocusState<String?> = .init(),
                 toolbarBuilder: @escaping @autoclosure () -> some View,
                 @ArrayBuilder<View> content: @escaping () -> [any View]) {
         self.focusOrder = content().compactMap { ($0 as? any Focusable)?.key }
@@ -50,6 +51,7 @@ public struct FormStack: View {
         self.spacing = spacing
         self.toolbarBuilder = toolbarBuilder
         self.content = content()
+        self.focusState = focusState
 
         self.valuesBinding = values
 
@@ -66,12 +68,14 @@ public extension FormStack {
          values: Binding<[FormValue]>,
          validateSubject: PassthroughSubject<Void, Never> = .init(),
          isValid: Binding<Bool> = .constant(true),
+         focusState: FocusState<String?> = .init(),
          @ArrayBuilder<View> content: @escaping () -> [any View]) {
         self.focusOrder = content().compactMap { ($0 as? any Focusable)?.key }
         self.alignment = alignment
         self.spacing = spacing
         self.toolbarBuilder = { DefaultKeyboardToolbar().any }
         self.content = content()
+        self.focusState = focusState
 
         self.valuesBinding = values
 
@@ -86,6 +90,7 @@ public extension FormStack {
          values: Binding<[FormValue]>,
          validateSubject: PassthroughSubject<Void, Never> = .init(),
          isValid: Binding<Bool> = .constant(true),
+         focusState: FocusState<String?> = .init(),
          toolbarBuilder: (() -> some View)?,
          @ArrayBuilder<View> content: @escaping () -> [any View]) {
         self.focusOrder = content().compactMap { ($0 as? any Focusable)?.key }
@@ -93,6 +98,7 @@ public extension FormStack {
         self.spacing = spacing
         self.toolbarBuilder = toolbarBuilder
         self.content = content()
+        self.focusState = focusState
 
         self.valuesBinding = values
 
