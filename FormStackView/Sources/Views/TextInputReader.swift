@@ -57,7 +57,7 @@ public struct TextInputReader<Content: View, Key: FormKey>: View {
     }
 
     private func validate(_ text: String) {
-        formViewModel.validationErrors[key.rawValue] = key.validationType.textValidator?.validate(text: text)
+        formViewModel.validationErrors[key.rawValue] = key.validator.textValidator?.validate(text: text)
     }
 }
 

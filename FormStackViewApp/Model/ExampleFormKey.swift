@@ -18,12 +18,12 @@ public enum ExampleFormKey: String, FormKey {
     case terms
     case marketing
 
-    public var validationType: ValidationType {
+    public var validator: ValidatorProtocol {
         switch self {
-        case .password: return Validation.password
-        case .terms: return Validation.terms
-        case .email: return Validation.email
-        default: return Validation.none
+        case .password: return ExampleValidator.password
+        case .terms: return ExampleValidator.terms
+        case .email: return ExampleValidator.email
+        default: return ExampleValidator.none
         }
     }
 

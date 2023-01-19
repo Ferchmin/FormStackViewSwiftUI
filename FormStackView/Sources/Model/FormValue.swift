@@ -54,31 +54,30 @@ extension FormValue: Hashable , Identifiable {
 
 public extension Binding where Value == [FormValue] {
     func value(for key: FormKey) -> Binding<FormValue> {
-        self
-            .map(get: { $0.first(where: { $0.key.rawValue == key.rawValue }) ?? .text(text: "", key: key) },
-                 set: { wrappedValue.replaced(value: $0) })
+        map(get: { $0.first(where: { $0.key.rawValue == key.rawValue }) ?? .text(text: "", key: key) },
+            set: { wrappedValue.replaced(value: $0) })
     }
     
     func text(for key: FormKey) -> Binding<String> {
-        self.value(for: key).map(get: { $0.text ?? "" },
-                                 set: { .text(text: $0, key: key) })
+        value(for: key).map(get: { $0.text ?? "" },
+                            set: { .text(text: $0, key: key) })
     }
 
     func isOn(for key: FormKey) -> Binding<Bool> {
-        self.value(for: key).map(get: { $0.isOn ?? false },
-                                 set: { .checkbox(value: $0, key: key) })
+        value(for: key).map(get: { $0.isOn ?? false },
+                            set: { .checkbox(value: $0, key: key) })
     }
 }
 
 public extension Binding where Value == FormValue {
     var text: Binding<String> {
-        self.map(get: { $0.text ?? "" },
-                 set: { .text(text: $0, key: wrappedValue.key) })
+        map(get: { $0.text ?? "" },
+            set: { .text(text: $0, key: wrappedValue.key) })
     }
 
     var isOn: Binding<Bool> {
-        self.map(get: { $0.isOn ?? false },
-                 set: { .checkbox(value: $0, key: wrappedValue.key) })
+        map(get: { $0.isOn ?? false },
+            set: { .checkbox(value: $0, key: wrappedValue.key) })
     }
 }
 
@@ -96,14 +95,14 @@ public extension Array where Element == FormValue {
     }
 
     func value(for key: FormKey) -> FormValue? {
-        self.first { $0.key.rawValue == key.rawValue }
+        first { $0.key.rawValue == key.rawValue }
     }
 
     func text(for key: FormKey) -> String {
-        self.value(for: key)?.text ?? ""
+        value(for: key)?.text ?? ""
     }
 
     func isOn(for key: FormKey) -> Bool {
-        self.value(for: key)?.isOn ?? false
+        value(for: key)?.isOn ?? false
     }
 }

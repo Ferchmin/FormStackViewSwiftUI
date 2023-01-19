@@ -137,7 +137,7 @@ public class FormStackViewModel: ObservableObject {
 
         validateSubject
             .map { [unowned self] in
-                keys.map { validationErrors[$0.rawValue] ?? $0.validationType.validate(values.value(for: $0)) }
+                keys.map { validationErrors[$0.rawValue] ?? $0.validator.validate(values.value(for: $0)) }
             }
             .map { $0.allSatisfy { $0 == nil } }
             .sink { isValidBinding.wrappedValue = $0 }
@@ -147,17 +147,5 @@ public class FormStackViewModel: ObservableObject {
             .map { errors -> Bool in errors.values.allSatisfy { $0 == nil } }
             .sink { isValidBinding.wrappedValue = $0 }
             .store(in: &subscriptions)
-    }
-}
-
-private struct FormStackView_Previews: PreviewProvider {
-    private static let emailKey = ExampleFormKey.email
-    private static let termsKey = ExampleFormKey.terms
-
-    public static var previews: some View {
-        FormStack(values: .constant([])) {
-            TextInputReader(key: emailKey) { TextField("Email", text: $0.text) }
-            ToggleInputReader(key: termsKey) { Toggle("Terms", isOn: $0.isOn) }
-        }
     }
 }

@@ -34,7 +34,7 @@ public struct ToggleInputReader<Content: View>: View {
     }
 
     private func validate(_ isOn: Bool) {
-        validationError = key.validationType.checkboxValidator?.validate(isOn: isOn)
+        validationError = key.validator.checkboxValidator?.validate(isOn: isOn)
         formViewModel.validationErrors[key.rawValue] = validationError
     }
 }
