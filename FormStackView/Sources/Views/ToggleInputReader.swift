@@ -10,8 +10,6 @@ import SwiftUI
 public struct ToggleInputReader<Content: View>: View {
     @EnvironmentObject private var formViewModel: FormStackViewModel
 
-    @State private var validationError: ValidationError?
-
     private let key: FormKey
     private let content: (ToggleInputReaderProxy) -> Content
 
@@ -34,8 +32,7 @@ public struct ToggleInputReader<Content: View>: View {
     }
 
     private func validate(_ isOn: Bool) {
-        validationError = key.validator.checkboxValidator?.validate(isOn: isOn)
-        formViewModel.validationErrors[key.rawValue] = validationError
+        formViewModel.validationErrors[key.rawValue] = key.validator.checkboxValidator?.validate(isOn: isOn)
     }
 }
 
