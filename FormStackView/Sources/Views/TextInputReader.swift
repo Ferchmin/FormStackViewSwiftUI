@@ -42,7 +42,7 @@ public struct TextInputReader<Content: View, Key: FormKey>: View {
             .focused(focusState.projectedValue, equals: key.rawValue)
             .onChange(of: isFocused) { if !$0 { shouldValidate = true; validate(text.wrappedValue) } }
             .onChange(of: text.wrappedValue) { if shouldValidate { validate($0) } }
-            .onReceive(formViewModel.validateSubject) { shouldValidate = true; validate(text.wrappedValue) }
+            .onReceive(formViewModel.validateSubject.filter { $0.shouldValidate(key: key) }) { _ in shouldValidate = true; validate(text.wrappedValue) }
             .keyboardType(key.keyboardType)
             .submitLabel(next == nil ? .done : .next)
             .onSubmit { focusState.wrappedValue = next }

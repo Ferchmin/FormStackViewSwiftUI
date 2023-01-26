@@ -41,7 +41,7 @@ public struct FormStack: View {
     public init(alignment: HorizontalAlignment = .center,
                 spacing: CGFloat? = nil,
                 values: Binding<[FormValue]>,
-                validateSubject: PassthroughSubject<Void, Never> = .init(),
+                validateSubject: PassthroughSubject<ValidationType, Never> = .init(),
                 isValid: Binding<Bool> = .constant(true),
                 focusState: FocusState<String?> = .init(),
                 toolbarBuilder: @escaping @autoclosure () -> some View,
@@ -66,7 +66,7 @@ public extension FormStack {
     init(alignment: HorizontalAlignment = .center,
          spacing: CGFloat? = nil,
          values: Binding<[FormValue]>,
-         validateSubject: PassthroughSubject<Void, Never> = .init(),
+         validateSubject: PassthroughSubject<ValidationType, Never> = .init(),
          isValid: Binding<Bool> = .constant(true),
          focusState: FocusState<String?> = .init(),
          @ArrayBuilder<View> content: @escaping () -> [any View]) {
@@ -88,7 +88,7 @@ public extension FormStack {
     init(alignment: HorizontalAlignment = .center,
          spacing: CGFloat? = nil,
          values: Binding<[FormValue]>,
-         validateSubject: PassthroughSubject<Void, Never> = .init(),
+         validateSubject: PassthroughSubject<ValidationType, Never> = .init(),
          isValid: Binding<Bool> = .constant(true),
          focusState: FocusState<String?> = .init(),
          toolbarBuilder: (() -> some View)?,
@@ -114,7 +114,7 @@ public class FormStackViewModel: ObservableObject {
     @Published var isValid: Bool = true
     @Published var validationErrors: [String: ValidationError?] = [:]
 
-    let validateSubject: PassthroughSubject<Void, Never>
+    let validateSubject: PassthroughSubject<ValidationType, Never>
 
     private var subscriptions: [AnyCancellable] = []
     private let keys: [FormKey]
@@ -122,7 +122,7 @@ public class FormStackViewModel: ObservableObject {
     public init(values: Binding<[FormValue]> = .constant([]),
                 keys: [FormKey] = [],
                 isValid: Binding<Bool> = .constant(true),
-                validateSubject: PassthroughSubject<Void, Never> = .init()) {
+                validateSubject: PassthroughSubject<ValidationType, Never> = .init()) {
         self.values = values.wrappedValue
         self.validateSubject = validateSubject
         self.keys = keys
@@ -136,15 +136,20 @@ public class FormStackViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         validateSubject
-            .map { [unowned self] in
-                keys.map { validationErrors[$0.rawValue] ?? $0.validator.validate(values.value(for: $0)) }
+            .filter { if case .keys = $0 { return true }; return false }
+            .sink { [unowned self] _ in self.validationErrors.removeAll() }
+            .store(in: &subscriptions)
+
+        validateSubject
+            .map { [unowned self] validationType in
+                keys.filter { validationType.shouldValidate(key: $0) }.map { $0.validator.validate(values.value(for: $0)) }
             }
             .map { $0.allSatisfy { $0 == nil } }
             .sink { isValidBinding.wrappedValue = $0 }
             .store(in: &subscriptions)
 
         $validationErrors
-            .map { errors -> Bool in errors.values.allSatisfy { $0 == nil } }
+            .map { $0.values.allSatisfy { $0 == nil } }
             .sink { isValidBinding.wrappedValue = $0 }
             .store(in: &subscriptions)
     }

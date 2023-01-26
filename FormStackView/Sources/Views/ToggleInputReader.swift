@@ -18,13 +18,13 @@ public struct ToggleInputReader<Content: View>: View {
     private var isOn: Binding<Bool> { $formViewModel.values.isOn(for: key) }
     private var proxy: ToggleInputReaderProxy {
         ToggleInputReaderProxy(isOn: isOn,
-                               validationError: validationError?.message)
+                               validationError: formViewModel.validationErrors[key.rawValue]??.message)
     }
 
     public var body: some View {
         content(proxy)
             .onChange(of: isOn.wrappedValue) { validate($0) }
-            .onReceive(formViewModel.validateSubject) { validate(isOn.wrappedValue) }
+            .onReceive(formViewModel.validateSubject.filter { $0.shouldValidate(key: key) }) { _ in validate(isOn.wrappedValue) }
             .id(key.rawValue)
     }
 

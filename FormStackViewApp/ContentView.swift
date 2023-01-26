@@ -19,7 +19,7 @@ struct ContentView: View {
     @State private var isValid: Bool = true
     @FocusState private var focusState: String?
 
-    private let validateSubject = PassthroughSubject<Void, Never>()
+    private let validateSubject = PassthroughSubject<ValidationType, Never>()
 
     var body: some View {
         NavigationView {
@@ -42,7 +42,12 @@ struct ContentView: View {
                         }
                     }
                     Spacer()
-                    Button("Validate", action: validateSubject.send)
+                    Button("Validate") {
+                        validateSubject.send(.all)
+                    }
+                    Button("Validate password") {
+                        validateSubject.send(.keys([ExampleFormKey.password]))
+                    }
                     if !isValid {
                         Text("Form view has errors").foregroundColor(.red)
                     }
