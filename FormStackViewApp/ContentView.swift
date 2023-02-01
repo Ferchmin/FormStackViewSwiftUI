@@ -19,43 +19,56 @@ struct ContentView: View {
     @State private var isValid: Bool = true
     @FocusState private var focusState: String?
 
+    private let topErrorKeySubject = PassthroughSubject<FormKey?, Never>()
     private let validateSubject = PassthroughSubject<ValidationType, Never>()
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 5) {
-                    FormStack(values: $values, validateSubject: validateSubject, isValid: $isValid, focusState: _focusState) {
-                        TextInput(key: .email)
-                        TextInput(key: .firstName)
-                        SecureTextInput(key: .password)
-                        PickerInput(key: .country, values: ["PL", "UK", "DE"])
-                        TextInput(key: .number)
-                        ToggleInput(key: .terms)
-                        ToggleInput(key: .marketing)
-                    }
-                    Divider().padding()
-                    ForEach(values) { value in
-                        HStack {
-                            Text("\(value.key.rawValue):")
-                            Text("\(value.text ?? value.isOn?.description ?? "")")
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(spacing: 5) {
+                        FormStack(values: $values,
+                                  validateSubject: validateSubject,
+                                  isValid: $isValid,
+                                  topErrorKeySubject: topErrorKeySubject,
+                                  focusState: _focusState) {
+                            TextInput(key: .email)
+                            TextInput(key: .firstName)
+                            SecureTextInput(key: .password)
+                            PickerInput(key: .country, values: ["PL", "UK", "DE"])
+                            TextInput(key: .number)
+                            Spacer().frame(height: 200)
+                            ToggleInput(key: .terms)
+                            Spacer().frame(height: 200)
+                            ToggleInput(key: .marketing)
+                            Spacer().frame(height: 200)
+                        }
+                        Divider().padding()
+                        ForEach(values) { value in
+                            HStack {
+                                Text("\(value.key.rawValue):")
+                                Text("\(value.text ?? value.isOn?.description ?? "")")
+                            }
+                        }
+                        Spacer()
+                        Button("Validate") {
+                            validateSubject.send(.all)
+                        }
+                        Button("Validate password") {
+                            validateSubject.send(.keys([ExampleFormKey.password]))
+                        }
+                        if !isValid {
+                            Text("Form view has errors").foregroundColor(.red)
+                        }
+                        Button("REPLACE") {
+                            values = [.text(text: "test@test.pl", key: ExampleFormKey.email)]
                         }
                     }
-                    Spacer()
-                    Button("Validate") {
-                        validateSubject.send(.all)
-                    }
-                    Button("Validate password") {
-                        validateSubject.send(.keys([ExampleFormKey.password]))
-                    }
-                    if !isValid {
-                        Text("Form view has errors").foregroundColor(.red)
-                    }
-                    Button("REPLACE") {
-                        values = [.text(text: "test@test.pl", key: ExampleFormKey.email)]
-                    }
+                    .padding()
                 }
-                .padding()
+                .onReceive(topErrorKeySubject.compactMap { $0 }) { key in
+                    withAnimation { proxy.scrollTo(key.rawValue) }
+                }
             }
             .navigationTitle("Example form")
             .navigationBarTitleDisplayMode(.inline)
