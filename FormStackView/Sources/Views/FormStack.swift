@@ -168,8 +168,10 @@ public class FormStackViewModel: ObservableObject {
 
         errors.map { $0.first?.0 }.sink(receiveValue: topErrorKeySubject.send).store(in: &subscriptions)
 
-        $validationErrors
-            .map { $0.values.allSatisfy { $0 == nil } }
+        errors
+            .receive(on: DispatchQueue.main)
+            .map { $0.allSatisfy { $0 == nil } }
+            .print("[FormStack] is form valid")
             .sink { isValidBinding.wrappedValue = $0 }
             .store(in: &subscriptions)
     }

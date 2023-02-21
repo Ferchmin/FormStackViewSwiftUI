@@ -37,11 +37,8 @@ struct ContentView: View {
                             SecureTextInput(key: .password)
                             PickerInput(key: .country, values: ["PL", "UK", "DE"])
                             TextInput(key: .number)
-                            Spacer().frame(height: 200)
                             ToggleInput(key: .terms)
-                            Spacer().frame(height: 200)
                             ToggleInput(key: .marketing)
-                            Spacer().frame(height: 200)
                         }
                         Divider().padding()
                         ForEach(values) { value in
@@ -54,8 +51,8 @@ struct ContentView: View {
                         Button("Validate") {
                             validateSubject.send(.all)
                         }
-                        Button("Validate password") {
-                            validateSubject.send(.keys([ExampleFormKey.password]))
+                        Button("Validate terms") {
+                            validateSubject.send(.keys([ExampleFormKey.terms]))
                         }
                         if !isValid {
                             Text("Form view has errors").foregroundColor(.red)
