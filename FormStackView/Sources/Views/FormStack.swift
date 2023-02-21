@@ -142,11 +142,6 @@ public class FormStackViewModel: ObservableObject {
             .sink { valuesBinding.wrappedValue = $0 }
             .store(in: &subscriptions)
 
-        validateSubject
-            .filter { if case .keys = $0 { return true }; return false }
-            .sink { [unowned self] _ in self.validationErrors.removeAll() }
-            .store(in: &subscriptions)
-
         let errors = validateSubject
             .map { [unowned self] validationType in
                 keys
@@ -154,6 +149,8 @@ public class FormStackViewModel: ObservableObject {
                     .map { ($0, $0.validator.validate(values.value(for: $0))) }
                     .filter { $0.1 != nil }
             }
+
+        errors.map { $0.first?.0 }.sink(receiveValue: topErrorKeySubject.send).store(in: &subscriptions)
 
         errors
             .map { errors in
@@ -166,11 +163,10 @@ public class FormStackViewModel: ObservableObject {
             .sink { [unowned self] in self.validationErrors = $0 }
             .store(in: &subscriptions)
 
-        errors.map { $0.first?.0 }.sink(receiveValue: topErrorKeySubject.send).store(in: &subscriptions)
 
-        errors
+        $validationErrors
             .receive(on: DispatchQueue.main)
-            .map { $0.allSatisfy { $0 == nil } }
+            .map { $0.values.allSatisfy { $0 == nil } }
             .print("[FormStack] is form valid")
             .sink { isValidBinding.wrappedValue = $0 }
             .store(in: &subscriptions)
