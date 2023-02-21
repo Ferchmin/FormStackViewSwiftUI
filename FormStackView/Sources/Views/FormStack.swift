@@ -137,38 +137,29 @@ public class FormStackViewModel: ObservableObject {
         setupBinding(valuesBinding: values, isValidBinding: isValid, topErrorKeySubject: topErrorKeySubject)
     }
 
-    private func setupBinding(valuesBinding: Binding<[FormValue]>, isValidBinding: Binding<Bool>, topErrorKeySubject: PassthroughSubject<FormKey?, Never>) {
+    private func setupBinding(valuesBinding: Binding<[FormValue]>,
+                              isValidBinding: Binding<Bool>,
+                              topErrorKeySubject: PassthroughSubject<FormKey?, Never>) {
         $values
             .sink { valuesBinding.wrappedValue = $0 }
             .store(in: &subscriptions)
 
-        let errors = validateSubject
-            .map { [unowned self] validationType in
-                keys
+        validateSubject
+            .sink { [unowned self] validationType in
+                let errors = self.keys
                     .filter { validationType.shouldValidate(key: $0) }
                     .map { ($0, $0.validator.validate(values.value(for: $0))) }
                     .filter { $0.1 != nil }
-            }
 
-        errors.map { $0.first?.0 }.sink(receiveValue: topErrorKeySubject.send).store(in: &subscriptions)
-
-        errors
-            .map { errors in
-                errors.reduce([String: ValidationError?]()) { result, element in
+                self.validationErrors = errors.reduce([String: ValidationError?]()) { result, element in
                     var newResult = result
                     newResult[element.0.rawValue] = element.1
                     return newResult
                 }
+
+                isValidBinding.wrappedValue = validationErrors.values.allSatisfy { $0 == nil }
+                topErrorKeySubject.send(errors.first?.0)
             }
-            .sink { [unowned self] in self.validationErrors = $0 }
-            .store(in: &subscriptions)
-
-
-        $validationErrors
-            .receive(on: DispatchQueue.main)
-            .map { $0.values.allSatisfy { $0 == nil } }
-            .print("[FormStack] is form valid")
-            .sink { isValidBinding.wrappedValue = $0 }
             .store(in: &subscriptions)
     }
 }
